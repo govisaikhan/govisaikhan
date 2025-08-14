@@ -42,7 +42,7 @@ function initTheme(){
 // ===== i18n =====
 const I18N = {
   mn: {
-    title_home: "Гүйцэтгэх захирал",
+    title_home: "М.Говьсайхан",
     title_projects: "Төслийн сан ",
     title_news: "Мэдээ — Цаг товлох / Санал хүсэлт",
     nav_home:"Нүүр", nav_projects:"Төсөл", nav_news:"Мэдээ", nav_book:"⏰ Цаг товлох",
@@ -75,7 +75,7 @@ const I18N = {
     avail_ok:"Энэ цаг боломжтой.", avail_full:"Тухайн цаг дүүрсэн байна.", avail_closed:"Тухайн цаг нээлттэй бус байна.", avail_err:"Тохиргооны алдаа эсвэл сүлжээ тасарлаа."
   },
   en: {
-    title_home:"CEO",
+    title_home:"M.Govisaikhan",
     title_projects:"Projects — Executive Portfolio",
     title_news:"News — Booking / Feedback — Executive",
     nav_home:"Home", nav_projects:"Projects", nav_news:"News", nav_book:"⏰ Book a meeting",
