@@ -1,6 +1,6 @@
 // ===== CONFIG =====
-const API_BASE = 'https://script.google.com/macros/s/AKfycbyDT4iTuMXoeeJ4xnnlt2tc-0DCuaJjn2K6TrNBZxHbOeuWeB5a-xAwDUI10xQDIxC2/exec'; // e.g., https://script.google.com/macros/s/AKfycb.../exec
-
+const API_BASE = 'https://script.google.com/macros/s/AKfycbxGAbzrXcMM-f0dj0enI_5kQmamH95r5oTS9jbfhbj_zdD72ndEimkvPzXiJc9qAQbE/exec'; // e.g., https://script.google.com/macros/s/AKfycb.../exec
+                  
 // ===== Helpers =====
 const $ = (s, r=document) => r.querySelector(s);
 const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
@@ -425,6 +425,115 @@ function initProjectViewToggle(){
 }
 
 // ===== Page Init =====
+
+// ===== Facebook Reels (from Google Sheets) — robust with fallbacks =====
+function reelsSkeleton(n=3){
+  return Array.from({length:n}).map(() => `
+    <article class="news-card">
+      <div class="skel" style="height:320px"></div>
+      <div class="news-body">
+        <div class="skel" style="height:14px;width:40%"></div>
+      </div>
+    </article>
+  `).join('');
+}
+
+function renderReel(url, title=''){
+  try{
+    const enc = encodeURIComponent(url);
+    const src = `https://www.facebook.com/plugins/video.php?href=${enc}&show_text=false&t=0`;
+    return `
+      <article class="news-card">
+        <div class="relative" style="padding-top:137.78%;border-radius:1rem;overflow:hidden">
+          <iframe
+            src="${src}"
+            style="position:absolute;inset:0;width:100%;height:100%;border:none;overflow:hidden"
+            scrolling="no" frameborder="0" allowfullscreen="true"
+            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+            title="${title ? title.replace(/"/g,'&quot;') : 'Facebook Reel'}"></iframe>
+        </div>
+        ${title ? `<div class="news-body"><div class="news-title mt-2">${title}</div></div>` : ''}
+      </article>`;
+  }catch(e){
+    return '';
+  }
+}
+
+function parseManualReels(){
+  // Optional manual fallback: <div id="reelsGrid" data-reels='["url1","url2"]'>
+  const grid = document.getElementById('reelsGrid');
+  if(!grid) return [];
+  try{
+    const raw = grid.getAttribute('data-reels') || '[]';
+    const arr = JSON.parse(raw);
+    return Array.isArray(arr) ? arr.filter(Boolean).map(u => ({url:u, title:''})) : [];
+  }catch(e){ return []; }
+}
+
+function filterNewsAsReels(items){
+  if(!Array.isArray(items)) return [];
+  return items.filter(it => {
+    const link = (it.link || it.LinkURL || '').toString();
+    const cat = (it.category || it.Category || '').toString().toLowerCase();
+    return link.includes('facebook.com/') && (link.includes('/reels/') || link.includes('/videos/')) ||
+           ['reel','reels','fb','facebook'].includes(cat);
+  }).map(it => ({ url: it.link || it.LinkURL, title: it.title || it.Title || '' }));
+}
+
+async function tryListReels(){
+  try{
+    const r = await getJSON(`${API_BASE}?action=listReels`);
+    if(r && r.data && r.data.length){
+      return r.data.filter(x => x && x.url).map(x => ({url:x.url, title:x.title || ''}));
+    }
+    return [];
+  }catch(e){ return []; }
+}
+
+async function tryNewsFallback(){
+  try{
+    const r = await getJSON(`${API_BASE}?action=listNews`);
+    return filterNewsAsReels(r && r.data ? r.data : []);
+  }catch(e){ return []; }
+}
+
+async function loadReelsFromSheet(){
+  const grid  = document.getElementById('reelsGrid');
+  const empty = document.getElementById('reelsEmpty');
+  if(!grid) return;
+
+  // skeleton
+  grid.innerHTML = reelsSkeleton(3);
+
+  // 1) Sheets: listReels
+  let items = await tryListReels();
+
+  // 2) Fallback: News дотроос FB reel/video холбоос
+  if(!items.length) items = await tryNewsFallback();
+
+  // 3) Manual fallback: data-reels
+  if(!items.length) items = parseManualReels();
+
+  // Хоосон бол
+  if(!items.length){
+    grid.innerHTML = '';
+    if (empty) empty.classList.remove('hidden');
+    console.warn('Reels not found: check listReels endpoint, News links, or data-reels.');
+    return;
+  }
+
+  // ▼ НҮҮРТ ЗӨВХӨН 3-ХАН ХАРАГДУУЛАХ
+  const limitAttr = grid.getAttribute('data-limit');
+  const limit = limitAttr ? parseInt(limitAttr, 10) : 0;
+  if(Number.isFinite(limit) && limit > 0){
+    items = items.slice(0, limit);
+  }
+
+  if (empty) empty.classList.add('hidden');
+  grid.innerHTML = items.map(it => renderReel(it.url, it.title)).join('');
+}
+
+
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
   initLang();
@@ -442,6 +551,8 @@ document.addEventListener('DOMContentLoaded', () => {
   loadNews();
   loadProjects();
   loadFeatured();
+
+  loadReelsFromSheet();
 
   // Forms
   bindBooking();
