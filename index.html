@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./assets/styles.css">
   <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/128/3281/3281289.png">
-</hIead>
+</head>
 <body class="bg-gray-50 text-gray-800" style="font-family: 'Manrope', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial;">
   <!-- Navbar -->
   <header class="sticky top-0 z-30 header-colored">
@@ -23,6 +23,7 @@
       <nav class="flex items-center gap-6 overflow-x-auto no-scrollbar">
         <a class="nav" href="./projects.html" data-i18n="nav_projects">Төсөл</a>
         <a class="nav" href="./news.html" data-i18n="nav_news">Мэдээ</a>
+        <a class="nav" href="./reels.html">Reels</a>
         <a class="btn-outline" href="./news.html#book" data-i18n="nav_book">⏰ Цаг товлох</a>
       </nav>
       <div class="flex items-center gap-2">
@@ -117,6 +118,27 @@
     </div>
     <p class="text-gray-200 mt-1" data-i18n="latest_news_desc">Шинэ нийтлэлүүд мэдээний хуудсаас автоматаар татагдана.</p>
     <div id="homeNewsGrid" class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+   <!-- Facebook Reels -->
+  <section class="max-w-7xl mx-auto px-5 py-8">
+  <div class="flex items-center justify-between gap-4">
+    <h2 class="section-title">Facebook Reels</h2>
+    <a href="./reel.html" class="text-sm font-semibold text-blue-700 hover:underline">Бүгдийг харах →</a>
+  </div>
+
+  <!-- ЗӨВХӨН НҮҮР ХУУДАС ДЭЭР data-limit="3" -->
+  <div
+    id="reelsGrid"
+    class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+    data-limit="3"
+    <!-- хүсвэл гараар fallback:
+    data-reels='["https://www.facebook.com/.../reels/...","https://www.facebook.com/.../videos/..."]'
+    -->
+  ></div>
+
+  <div id="reelsEmpty" class="hidden text-gray-500">Reel олдсонгүй.</div>
+</section>
+    
   </section>
 
   <!-- Footer -->
@@ -127,7 +149,12 @@
         <a class="nav" href="./projects.html" data-i18n="nav_projects">Төсөл</a>
         <a class="nav" href="./news.html" data-i18n="nav_news">Мэдээ</a>
         <a class="nav" href="./news.html#book" data-i18n="nav_book">⏰ Цаг товлох</a>
+        <a class="nav" href="./reels.html" data-i18n="nav_reels">Reels</a>
       </div>
+      <!-- <div class="flex items-center gap-4">
+        <a class="icon-btn" href="https://www.facebook.com/GovisaikhanManibazar" target="_blank" title="Facebook" aria-label="Facebook" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"><i class="fab fa-facebook-f"></i></a>
+        <a class="icon-btn" href="https://www.instagram.com/govshan" target="_blank" title="Instagram" aria-label="Instagram" rel="noopener noreferrer" aria-hidden="true" tabindex
+      </div> -->
     </div>
   </footer>
 
