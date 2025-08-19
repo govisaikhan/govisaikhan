@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="mn" class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Reels — Бүх бичлэг</title>
+  <meta name="description" content="Facebook Reels — бүх бичлэгүүд нэг дор."/>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/128/3281/3281289.png">
+  <link rel="stylesheet" href="./assets/styles.css">
+</head>
+<body class="bg-gray-50 text-gray-800" style="font-family: 'Manrope', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial;">
+  <!-- Navbar -->
+  <header class="sticky top-0 z-30 header-colored">
+    <div class="max-w-7xl mx-auto px-5 py-4 flex items-center justify-between">
+      <a href="./" class="flex items-center gap-3">
+        <span class="sr-only">Гүйцэтгэх захирал</span>
+      </a>
+      <nav class="flex items-center gap-6 overflow-x-auto no-scrollbar">
+        <a class="nav" href="./projects.html" data-i18n="nav_projects">Төсөл</a>
+        <a class="nav" href="./news.html" data-i18n="nav_news">Мэдээ</a>
+        <a class="btn-outline" href="./news.html#book" data-i18n="nav_book">⏰ Цаг товлох</a>
+      </nav>
+      <div class="flex items-center gap-2">
+        <button id="langToggle" class="icon-btn" title="Language">MN</button>
+        <button id="themeToggle" class="icon-btn" aria-label="Toggle dark mode">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-5 pt-10 pb-16">
+    <div class="flex items-center justify-between gap-4">
+      <h1 class="text-3xl md:text-4xl font-extrabold">Богино видео</h1>
+      <a href="./" class="text-sm font-semibold text-blue-700 hover:underline">Нүүр рүү буцах</a>
+    </div>
+
+    <p class="text-gray-600 mt-2">Мэдээлэл татаж байна.</p>
+
+    <div id="reelsGrid" class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    <div id="reelsEmpty" class="hidden text-gray-500">Reel олдсонгүй.</div>
+  </main>
+
+  <footer class="border-t border-gray-100 mt-10">
+    <div class="max-w-7xl mx-auto px-5 py-8 text-sm text-gray-500 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div>© <span id="y"></span> М.ГОВЬСАЙХАН бүх эрх хуулиар хамгаалагдсан.</div>
+      <div class="flex items-center gap-4">
+        <a class="nav" href="./projects.html" data-i18n="nav_projects">Төсөл</a>
+        <a class="nav" href="./news.html" data-i18n="nav_news">Мэдээ</a>
+        <a class="nav" href="./news.html#book" data-i18n="nav_book">⏰ Цаг товлох</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./assets/app.js"></script>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>
