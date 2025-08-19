@@ -45,7 +45,7 @@ const I18N = {
     title_home: "М.Говьсайхан",
     title_projects: "Төслийн сан ",
     title_news: "Мэдээ — Цаг товлох / Санал хүсэлт",
-    nav_home:"Нүүр", nav_projects:"Төсөл", nav_news:"Мэдээ", nav_book:"⏰ Цаг товлох",
+    nav_home:"Нүүр", nav_projects:"Төсөл", nav_news:"Мэдээ", nav_book:"👍🏻Санал өгөх",
     badge_exec:"НОСК ХК",
     hero_title:"Нийслэлийн орон сууцны корпораци ХК гүйцэтгэх захирал <span class='grad'>М.Говьсайхан</span>",
     hero_desc:"Бид иргэдийн ая тухтай, таатай орчинд амьдрах нөхцөлийг бүрдүүлэхийн тулд олон төсөл хөтөлбөрийг амжилттай хэрэгжүүлж байна.",
@@ -71,14 +71,14 @@ const I18N = {
     detail_ph:"Дэлгэрэнгүй...", send:"Илгээх",
     name_opt_ph:"Нэр", phone_opt_ph:"Утас", email_opt_ph:"И-мэйл", fb_ph:"Таны санал...",
     rating:"Үнэлгээ:",
-    book_title:"⏰ Цаг товлох",
+    book_title:"👍🏻Санал өгөх",
     avail_ok:"Энэ цаг боломжтой.", avail_full:"Тухайн цаг дүүрсэн байна.", avail_closed:"Тухайн цаг нээлттэй бус байна.", avail_err:"Тохиргооны алдаа эсвэл сүлжээ тасарлаа."
   },
   en: {
     title_home:"M.Govisaikhan",
     title_projects:"Projects — Executive Portfolio",
     title_news:"News — Booking / Feedback — Executive",
-    nav_home:"Home", nav_projects:"Projects", nav_news:"News", nav_book:"⏰ Book a meeting",
+    nav_home:"Home", nav_projects:"Projects", nav_news:"News", nav_book:"👍🏻Vote",
     badge_exec:"NOSK LLC",
     hero_title:"<span class='grad'>M.Govisaikhan</span> CEO Capital Housing Corporation LLC",
     hero_desc:"We are successfully implementing many projects and programs to create conditions for citizens to live in a comfortable and pleasant environment.",
@@ -104,7 +104,7 @@ const I18N = {
     detail_ph:"Details...", send:"Send",
     name_opt_ph:"Name", phone_opt_ph:"Phone", email_opt_ph:"Email", fb_ph:"Your feedback...",
     rating:"Rating:",
-    book_title:"⏰ Book a meeting",
+    book_title:"👍🏻Vote",
     avail_ok:"This slot is available.", avail_full:"This slot is full.", avail_closed:"This slot is closed.", avail_err:"Availability error or network issue."
   }
 };
