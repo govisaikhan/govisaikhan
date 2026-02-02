@@ -44,15 +44,14 @@ const I18N = {
   mn: {
     title_home: "М.Говьсайхан",
     title_projects: "Төслийн сан ",
-    title_news: "Мэдээ — Цаг товлох / Санал хүсэлт",
+    title_news: "Мэдээ — Санал хүсэлт",
     nav_home:"Нүүр", nav_projects:"Төсөл", nav_news:"Мэдээ", nav_book:"👍🏻Санал өгөх",
     badge_exec:"НОСК ХК",
     hero_title:"Нийслэлийн орон сууцны корпораци ХК гүйцэтгэх захирал <span class='grad'>М.Говьсайхан</span>",
     hero_desc:"Бид иргэдийн ая тухтай, таатай орчинд амьдрах нөхцөлийг бүрдүүлэхийн тулд олон төсөл хөтөлбөрийг амжилттай хэрэгжүүлж байна.",
-    cta_meeting:"⏰ Уулзалт товлох", cta_projects:"Төслийн санг үзэх",
+    cta_meeting:"👍🏻 Санал өгөх", cta_projects:"Төслийн санг үзэх",
     kpi_exp_n:"22+ жил", kpi_exp_t:"Туршлага", kpi_done_n:"22+ төсөл", kpi_done_t:"Хэрэгжүүлж буй", kpi_cs_n:"92%", kpi_cs_t:"Ханын материал ОСТ Газар чөлөөлөлт",
     bio_title:"Нийгэмд хийж хэрэгжүүлсэн төсөл хөтөлбөр", bio_name:"М.Говьсайхан", bio_role:"Гүйцэтгэх захирал",
-    // bio_download:"Профайл татах (PDF)",
     bio_desc:"Нийслэлд анх удаа дотоод бонд гаргаж 2.000 орчим иргэнийг орон сууцанд оруулсан.",
     bio_point1:"Улаанбаатар хотын дэд төвүүдийг хөгжүүлэхээр ‘’Улаанбаатар хотын түгжрэлийг бууруулж, гэр хорооллыг орон сууцжуулах’’ тухай хуулийг батлуулжээ.",
     bio_point2:"Сэлбэ дэд төвийг түшиглэн гэр хорооллыг орон сууцжуулах төслийн хүрээнд 12 мянган айлын орон сууцны төслийг эхлүүлжээ.",
@@ -65,27 +64,24 @@ const I18N = {
     projects_title:"Төслийн сан", projects_desc:"Мэдээлэл татаж байна.",
     all_categories:"Бүх ангилал", all_status:"Бүх төлөв", view_grid:"Grid", view_list:"List",
     news_title:"Мэдээ мэдээлэл", news_desc:"Мэдээлэл татаж байна.",
-    tab_news:"Мэдээ", tab_book:"Цаг товлох", tab_feedback:"Санал",
+    tab_news:"Мэдээ", tab_feedback:"Санал",
     no_results:"Илэрц олдсонгүй.", all:"Бүгд",
     search:"Хайлт...", name_ph:"Нэр *", phone_ph:"Утас *", email_ph:"И-мэйл",
     detail_ph:"Дэлгэрэнгүй...", send:"Илгээх",
     name_opt_ph:"Нэр", phone_opt_ph:"Утас", email_opt_ph:"И-мэйл", fb_ph:"Таны санал...",
-    rating:"Үнэлгээ:",
-    book_title:"👍🏻Санал өгөх",
-    avail_ok:"Энэ цаг боломжтой.", avail_full:"Тухайн цаг дүүрсэн байна.", avail_closed:"Тухайн цаг нээлттэй бус байна.", avail_err:"Тохиргооны алдаа эсвэл сүлжээ тасарлаа."
+    rating:"Үнэлгээ:"
   },
   en: {
     title_home:"M.Govisaikhan",
     title_projects:"Projects — Executive Portfolio",
-    title_news:"News — Booking / Feedback — Executive",
+    title_news:"News — Feedback — Executive",
     nav_home:"Home", nav_projects:"Projects", nav_news:"News", nav_book:"👍🏻Vote",
     badge_exec:"NOSK LLC",
     hero_title:"<span class='grad'>M.Govisaikhan</span> CEO Capital Housing Corporation LLC",
     hero_desc:"We are successfully implementing many projects and programs to create conditions for citizens to live in a comfortable and pleasant environment.",
-    cta_meeting:"⏰ Book a meeting", cta_projects:"Browse projects",
+    cta_meeting:"👍🏻 Give Feedback", cta_projects:"Browse projects",
     kpi_exp_n:"22+ yrs", kpi_exp_t:"Experience", kpi_done_n:"22+ projects", kpi_done_t:"Delivered", kpi_cs_n:"92%", kpi_cs_t:"Wall material OST land clearance",
     bio_title:"Projects implemented in the community", bio_name:"M.Govisakhan", bio_role:"Ceo",
-    // bio_download:"Download profile (PDF)",
     bio_desc:"For the first time in the capital, domestic bonds were issued and approximately 2,000 citizens were placed in housing.",
     bio_point1:"The law on Reducing congestion in Ulaanbaatar and housing ger districts was approved to develop sub-centers in Ulaanbaatar.",
     bio_point2:"A housing project for 12,000 families has been launched as part of the housing project for ger districts, based on the Selbe sub-center.",
@@ -98,14 +94,12 @@ const I18N = {
     projects_title:"Projects", projects_desc:"Data is loading",
     all_categories:"All categories", all_status:"All status", view_grid:"Grid", view_list:"List",
     news_title:"News & Updates", news_desc:"Pulled from Sheets with skeleton loading.",
-    tab_news:"News", tab_book:"Booking", tab_feedback:"Feedback",
+    tab_news:"News", tab_feedback:"Feedback",
     no_results:"No results.", all:"All",
     search:"Search...", name_ph:"Name *", phone_ph:"Phone *", email_ph:"Email",
     detail_ph:"Details...", send:"Send",
     name_opt_ph:"Name", phone_opt_ph:"Phone", email_opt_ph:"Email", fb_ph:"Your feedback...",
-    rating:"Rating:",
-    book_title:"👍🏻Vote",
-    avail_ok:"This slot is available.", avail_full:"This slot is full.", avail_closed:"This slot is closed.", avail_err:"Availability error or network issue."
+    rating:"Rating:"
   }
 };
 
@@ -144,7 +138,7 @@ function initLang(){
 function newsSkeleton(n=6){
   return Array.from({length:n}).map(()=>`
     <article class="news-card">
-      <div class="skel" style="height:180px"></div>
+      <div class="skel" style="height:360px"></div>
       <div class="news-body">
         <div class="skel" style="height:14px;width:60%"></div>
         <div class="skel" style="height:18px;width:85%;margin-top:10px"></div>
@@ -157,7 +151,7 @@ function newsSkeleton(n=6){
 function projectSkeletonGrid(n=6){
   return Array.from({length:n}).map(()=>`
     <article class="news-card">
-      <div class="skel" style="height:180px"></div>
+      <div class="skel" style="height:360px"></div>
       <div class="news-body">
         <div class="skel" style="height:18px;width:70%"></div>
         <div class="skel" style="height:14px;width:40%;margin-top:8px"></div>
@@ -315,59 +309,7 @@ async function loadFeatured(){
   }
 }
 
-// ===== Availability =====
-async function checkAvailability(){
-  const date = $('[name="date"]')?.value;
-  const time = $('[name="time"]')?.value;
-  const service = $('[name="service"]')?.value || '';
-  const msg = $('#availMsg');
-  if(!date || !time){ msg.textContent=''; return; }
-  try{
-    const res = await postJSON(API_BASE, { action:'checkAvailability', payload:{ date, time, service } });
-    const lang = localStorage.getItem('lang') || 'mn';
-    if(res.ok){
-      msg.className = 'text-sm text-green-600';
-      msg.textContent = I18N[lang].avail_ok;
-      $('#bookBtn')?.removeAttribute('disabled');
-    }else{
-      msg.className = 'text-sm text-red-600';
-      msg.textContent = res.message || I18N[lang].avail_full;
-      $('#bookBtn')?.setAttribute('disabled','true');
-    }
-  }catch(e){
-    const lang = localStorage.getItem('lang') || 'mn';
-    msg.className = 'text-sm text-orange-600';
-    msg.textContent = I18N[lang].avail_err;
-  }
-}
-
-// ===== Booking & Feedback =====
-function bindBooking(){
-  const form = $('#bookForm'); if(!form) return;
-  const btn = $('#bookBtn'); const msg = $('#bookMsg');
-  $('[name="date"]')?.addEventListener('change', checkAvailability);
-  $('[name="time"]')?.addEventListener('change', checkAvailability);
-  $('[name="service"]')?.addEventListener('change', checkAvailability);
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const fd = new FormData(form);
-    const payload = Object.fromEntries(fd.entries());
-    if(!payload.name || !payload.phone || !payload.date || !payload.time || !payload.service){
-      const lang = localStorage.getItem('lang') || 'mn';
-      toast(msg, lang==='mn' ? 'Шаардлагатай талбаруудыг бөглөнө үү.' : 'Please fill required fields.', false);
-      return;
-    }
-    btn.disabled = true; btn.textContent = (localStorage.getItem('lang')==='en' ? 'Sending...' : 'Илгээж байна...');
-    try{
-      // server re-checks availability
-      const res = await postJSON(API_BASE, { action: 'bookAppointment', payload: { ...payload, page: location.pathname } });
-      if(res.ok){ form.reset(); toast(msg,'Амжилттай илгээгдлээ.'); $('#availMsg').textContent=''; }
-      else { toast(msg, res.message || 'Алдаа гарлаа.', false); }
-    }catch(err){ toast(msg,'Сүлжээний алдаа.', false); }
-    finally{ btn.disabled=false; btn.textContent=I18N[localStorage.getItem('lang')||'mn'].send; }
-  });
-}
-
+// ===== Feedback =====
 function bindFeedback(){
   const form = $('#feedbackForm'); if(!form) return;
   const btn = $('#fbBtn'); const msg = $('#fbMsg');
@@ -555,10 +497,10 @@ document.addEventListener('DOMContentLoaded', () => {
   loadReelsFromSheet();
 
   // Forms
-  bindBooking();
+  bindFeedback();
+  
   // Homepage news
   loadHomeNews();
-  bindFeedback();
 });
 
 
