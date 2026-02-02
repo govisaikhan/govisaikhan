@@ -58,9 +58,9 @@ html.dark{
 .toggle-wrap{display:flex;background:var(--brand-50);padding:.3rem;border-radius:9999px}
 .toggle{padding:.45rem .8rem;border-radius:9999px;font-weight:800;color:#4b5563}
 .toggle.active{background:var(--brand-600);color:#fff}
-/* News/Project cards */
+/* News/Project cards - ЗАСАГДСАН: зураг 400x360 */
 .news-card{display:flex;flex-direction:column;background:var(--surface);border-radius:1rem;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.06)}
-.news-cover{width:100%;height:180px;object-fit:cover}
+.news-cover{width:100%;height:360px;object-fit:cover;max-width:400px;margin:0 auto}
 .news-body{padding:1rem}
 .news-meta{font-size:.8rem;color:var(--muted)}
 .news-title{font-weight:900;font-size:1.05rem}
@@ -85,15 +85,15 @@ html.dark, .dark body{background:#0b1220;color:#e5e7eb}
 .dark .skel{background:#111b31}
 /* Executive Bio */
 .bio{display:grid;grid-template-columns:1fr;gap:1.5rem}
-@media(min-width:1024px){.bio{grid-template-columns:340px 1fr}}
+@media(min-width:1024px){.bio{grid-template-columns:440px 1fr}}
 .bio-photo{width:100%;height:340px;object-fit:cover;border-radius:1rem;box-shadow:0 10px 20px rgba(0,0,0,.15)}
+/* ШИНЭ: Bio видео - 426x240px */
+.bio-video{width:426px;height:440px;border-radius:1rem;box-shadow:0 10px 20px rgba(0,0,0,.15);margin:0 auto}
 .badge{display:inline-flex;align-items:center;gap:.5rem;border:1px solid var(--brand-200);background:var(--brand-50);color:var(--brand-700);padding:.35rem .6rem;border-radius:.75rem;font-weight:800;font-size:.75rem}
-
 
 /* Hide horizontal scrollbar for nav overflow */
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
 
 /* ===== Colored Header (brand gradient) ===== */
 .header-colored {
