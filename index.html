@@ -17,14 +17,13 @@
   <header class="sticky top-0 z-30 header-colored">
     <div class="max-w-7xl mx-auto px-5 py-4 flex items-center justify-between">
       <a href="./" class="flex items-center gap-3">
-        <!-- <img src="./logo.svg" alt="Logo" class="h-9 w-auto"/> -->
         <span class="sr-only">Гүйцэтгэх захирал</span>
       </a>
       <nav class="flex items-center gap-6 overflow-x-auto no-scrollbar">
         <a class="nav" href="./projects.html" data-i18n="nav_projects">Төсөл</a>
         <a class="nav" href="./news.html" data-i18n="nav_news">Мэдээ</a>
         <a class="nav" href="./reels.html">Видео</a>
-        <a class="btn-outline" href="./news.html#book" data-i18n="nav_book">👍🏻Санал өгөх</a>
+        <a class="btn-outline" href="./news.html#tFb" data-i18n="nav_book">👍🏻Санал өгөх</a>
       </nav>
       <div class="flex items-center gap-2">
         <button id="langToggle" class="icon-btn" title="Language">MN</button>
@@ -45,7 +44,7 @@
         Бид томоохон дэд бүтэц, орон сууц, нийтийн зориулалттай төслүүдийг төлөвлөлтөөс хүлээлгэн өгөх хүртэл иж бүрэн менежментээр удирддаг.
       </p>
       <div class="flex flex-wrap gap-3 mt-6">
-        <a class="btn-primary" href="./news.html#book" data-i18n="cta_meeting">👍🏻Санал өгөх</a>
+        <a class="btn-primary" href="./news.html#tFb" data-i18n="cta_meeting">👍🏻Санал өгөх</a>
         <a class="btn-soft" href="./projects.html" data-i18n="cta_projects">Төслийн санг үзэх</a>
       </div>
       <div class="grid grid-cols-3 gap-6 mt-10">
@@ -71,18 +70,25 @@
     </div>
   </section>
 
-  <!-- Executive Bio -->
+   <!-- Executive Bio -->
   <section class="max-w-7xl mx-auto px-5 py-6">
     <h2 class="section-title" data-i18n="bio_title">Нийгэмд хийж хэрэгжүүлсэн төсөл хөтөлбөр</h2>
     <div class="bio mt-4">
-      <img class="bio-photo" src="https://nosk.ub.gov.mn/web/image/9684-adab88c8/Dargapic3.jpg?height=256" alt="CEO"/>
+      <!-- ШИНЭЧЛЭГДСЭН: Таны видео 426x240px -->
+      <iframe 
+        class="bio-video"
+        src="https://www.youtube.com/embed/Pey7PWSO7QY?autoplay=1&mute=1&loop=1&playlist=Pey7PWSO7QY" 
+        title="Нийгэмд хийж хэрэгжүүлсэн төсөл хөтөлбөр"
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+      </iframe>
       <div class="card">
         <div class="flex items-center justify-between gap-4">
           <div>
             <div class="text-2xl font-extrabold" data-i18n="bio_name">М.Говьсайхан</div>
             <div class="text-sm text-gray-500" data-i18n="bio_role">Гүйцэтгэх захирал</div>
           </div>
-          <!-- <a href="#" class="btn-outline" data-i18n="bio_download">Профайл татах (PDF)</a> -->
         </div>
         <p class="text-gray-600 mt-4" data-i18n="bio_desc">
           Нийслэлд анх удаа дотоод бонд гаргаж 2.000 орчим иргэнийг орон сууцанд оруулсан.
@@ -92,9 +98,9 @@
           <li>• <span data-i18n="bio_point2">Сэлбэ дэд төвийг түшиглэн гэр хорооллыг орон сууцжуулах төслийн хүрээнд 12 мянган айлын орон сууцны төслийг эхлүүлжээ.</span></li>
           <li>• <span data-i18n="bio_point3">Улаанбаатар хотод түрээсийн орон сууцны олон талт хэлбэрийг амжилттай хэрэгжүүлжээ.</span></li>
           <li>• <span data-i18n="bio_point4">Ашиглалтын шаардлага хангахгүй орон сууцнуудыг буулгаж, дахин төлөвлөн иргэдийг эрүүл аюулгүй орчинд амьдрах нөхцөлөөр хангажээ.</span></li>
-          <li>• <span data-i18n="bio_point4">Эрчим хүчний хэмнэлттэй төслүүдийг дэмжиж Улаанбаатар хотод анх удаа дулааны төлбөр төлөхгүйгээр амьдарч болох загвар орон сууцыг ашиглалтад оруулжээ.</span></li>
-          <li>• <span data-i18n="bio_point4">Улаанбаатар хотын шинэ суурьшлын бүсийг тэлэх ажлын хүрээнд Төр, хувийн хэвшлийн түншлэлтэй хамтран томоохон төслүүдийг эхлүүлэв.</span></li>
-          <li>• <span data-i18n="bio_point4">Улаанбаатар хотод орлогод нийцсэн ногоон орон сууцны төслийг хэрэгжүүлж 800 айлын орон сууцыг барьж эхэлсэн.</span></li>
+          <li>• <span data-i18n="bio_point5">Эрчим хүчний хэмнэлттэй төслүүдийг дэмжиж Улаанбаатар хотод анх удаа дулааны төлбөр төлөхгүйгээр амьдарч болох загвар орон сууцыг ашиглалтад оруулжээ.</span></li>
+          <li>• <span data-i18n="bio_point6">Улаанбаатар хотын шинэ суурьшлын бүсийг тэлэх ажлын хүрээнд Төр, хувийн хэвшлийн түншлэлтэй хамтран томоохон төслүүдийг эхлүүлэв.</span></li>
+          <li>• <span data-i18n="bio_point7">Улаанбаатар хотод орлогод нийцсэн ногоон орон сууцны төслийг хэрэгжүүлж 800 айлын орон сууцыг барьж эхэлсэн.</span></li>
         </ul>
       </div>
     </div>
@@ -123,7 +129,7 @@
   <section class="max-w-7xl mx-auto px-5 py-8">
   <div class="flex items-center justify-between gap-4">
     <h2 class="section-title">Видео мэдээ</h2>
-    <a href="./reel.html" class="text-sm font-semibold text-blue-700 hover:underline">Бүгдийг харах →</a>
+    <a href="./reels.html" class="text-sm font-semibold text-blue-700 hover:underline">Бүгдийг харах →</a>
   </div>
 
   <!-- ЗӨВХӨН НҮҮР ХУУДАС ДЭЭР data-limit="3" -->
@@ -131,9 +137,6 @@
     id="reelsGrid"
     class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
     data-limit="3"
-    <!-- хүсвэл гараар fallback:
-    data-reels='["https://www.facebook.com/.../reels/...","https://www.facebook.com/.../videos/..."]'
-    -->
   ></div>
 
   <div id="reelsEmpty" class="hidden text-gray-500">Reel олдсонгүй.</div>
@@ -148,17 +151,13 @@
       <div class="flex items-center gap-4">
         <a class="nav" href="./projects.html" data-i18n="nav_projects">Төсөл</a>
         <a class="nav" href="./news.html" data-i18n="nav_news">Мэдээ</a>
-        <a class="nav" href="./news.html#book" data-i18n="nav_book">👍🏻Санал өгөх</a>
-        <a class="nav" href="./reels.html" data-i18n="nav_reels">Видео</a>
+        <a class="nav" href="./news.html#tFb" data-i18n="nav_book">👍🏻Санал өгөх</a>
+        <a class="nav" href="./reels.html">Видео</a>
       </div>
-      <!-- <div class="flex items-center gap-4">
-        <a class="icon-btn" href="https://www.facebook.com/GovisaikhanManibazar" target="_blank" title="Facebook" aria-label="Facebook" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"><i class="fab fa-facebook-f"></i></a>
-        <a class="icon-btn" href="https://www.instagram.com/govshan" target="_blank" title="Instagram" aria-label="Instagram" rel="noopener noreferrer" aria-hidden="true" tabindex
-      </div> -->
     </div>
   </footer>
 
-  <a href="./news.html#tBook" class="fab">👍🏻</a>
+  <a href="./news.html#tFb" class="fab">👍🏻</a>
 
   <script src="./assets/app.js"></script>
   <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
