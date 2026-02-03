@@ -32,7 +32,7 @@
   </header>
 
   <main class="max-w-7xl mx-auto px-5 pb-16 space-y-10">
-    <!-- Tabs - ЗАСАГДСАН: Цаг товлох табыг хассан -->
+    <!-- Tabs -->
     <div class="tabs">
       <button class="tab active" data-tab="tNews" data-i18n="tab_news">Мэдээ</button>
       <button class="tab" data-tab="tFb" data-i18n="tab_feedback">Санал</button>
@@ -45,9 +45,10 @@
           <h1 class="text-3xl md:text-4xl font-extrabold" data-i18n="news_title">Мэдээ мэдээлэл</h1>
           <p class="text-gray-600" data-i18n="news_desc">Мэдээлэл татаж байна.</p>
         </div>
-        <div class="flex gap-3">
-          <input id="q" type="search" class="input w-64" data-i18n-ph="search" placeholder="Хайлт...">
-          <select id="cat" class="input">
+        <!-- ЗАСВАРЛАГДСАН: Хайлтын хэсэг responsive болсон -->
+        <div class="flex flex-col sm:flex-row gap-3">
+          <input id="q" type="search" class="input w-full sm:w-64" data-i18n-ph="search" placeholder="Хайлт...">
+          <select id="cat" class="input w-full sm:w-auto">
             <option value="" data-i18n="all">Бүгд</option>
           </select>
         </div>
@@ -60,25 +61,34 @@
     <!-- tFb -->
     <section id="tFb" class="tab-pane hidden space-y-5">
       <h2 class="section-title">💬 Санал, сэтгэгдэл</h2>
+      <p class="text-gray-600" data-i18n="feedback_desc">Та саналаа үлдээнэ үү. Бид таны саналыг анхааралтай хүлээн авч, шийдвэрлэх болно.</p>
+      
       <form id="feedbackForm" class="card form-grid">
-        <input name="name" class="input" data-i18n-ph="name_opt_ph" placeholder="Нэр">
-        <input name="phone" class="input" data-i18n-ph="phone_opt_ph" placeholder="Утас">
+        <input name="name" class="input" data-i18n-ph="name_opt_ph" placeholder="Нэр" required>
+        <input name="phone" class="input" data-i18n-ph="phone_opt_ph" placeholder="Утас" required>
         <input type="email" name="email" class="input" data-i18n-ph="email_opt_ph" placeholder="И-мэйл">
-        <div class="flex items-center gap-2">
+        
+        <div class="flex items-center gap-2 md:col-span-2">
           <label class="text-gray-600" data-i18n="rating">Үнэлгээ:</label>
           <div class="flex gap-1" id="stars">
-            <button type="button" data-v="1" class="star">★</button>
-            <button type="button" data-v="2" class="star">★</button>
-            <button type="button" data-v="3" class="star">★</button>
-            <button type="button" data-v="4" class="star">★</button>
-            <button type="button" data-v="5" class="star">★</button>
+            <button type="button" data-v="1" class="star" title="1 од">★</button>
+            <button type="button" data-v="2" class="star" title="2 од">★</button>
+            <button type="button" data-v="3" class="star" title="3 од">★</button>
+            <button type="button" data-v="4" class="star" title="4 од">★</button>
+            <button type="button" data-v="5" class="star" title="5 од">★</button>
           </div>
           <input type="hidden" name="rating" value="5">
         </div>
-        <textarea name="message" rows="3" class="md:col-span-2 input" data-i18n-ph="fb_ph" placeholder="Таны санал..."></textarea>
-        <div class="md:col-span-2 flex items-center gap-3">
-          <button id="fbBtn" class="btn-primary" data-i18n="send">Илгээх</button>
-          <span id="fbMsg" class="text-sm text-gray-500"></span>
+        
+        <textarea name="message" rows="3" class="md:col-span-2 input" data-i18n-ph="fb_ph" placeholder="Таны санал..." required></textarea>
+        
+        <div class="md:col-span-2 flex flex-col sm:flex-row items-start sm:items-center gap-3">
+          <button id="fbBtn" class="btn-primary" type="submit" data-i18n="send">Илгээх</button>
+          <span id="fbMsg" class="text-sm"></span>
+        </div>
+        
+        <div class="md:col-span-2 text-xs text-gray-500 mt-2">
+          <p>Тэмдэглэл: Хэрэв санал илгээхэд алдаа гарвал <code>API_BASE</code> URL-ээ Google Apps Script Web App URL-ээр солино уу.</p>
         </div>
       </form>
     </section>
