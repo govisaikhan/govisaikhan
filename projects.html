@@ -21,7 +21,7 @@
     <nav class="flex items-center gap-6 overflow-x-auto no-scrollbar">
       <a class="nav" href="./" data-i18n="nav_home">Нүүр</a>
       <a class="nav" href="./news.html" data-i18n="nav_news">Мэдээ</a>
-      <a class="btn-outline" href="./news.html#book" data-i18n="nav_book">👍🏻Санал өгөх</a>
+      <a class="btn-outline" href="./news.html#tFb" data-i18n="nav_book">👍🏻Санал өгөх</a>
     </nav>
     <div class="flex items-center gap-2">
       <button id="langToggle" class="icon-btn">MN</button>
@@ -37,18 +37,19 @@
         <h1 class="text-3xl md:text-4xl font-extrabold" data-i18n="projects_title">Төслийн сан</h1>
         <p class="text-gray-600" data-i18n="projects_desc">Google Sheets-ээс автоматаар уншина.</p>
       </div>
-      <div class="flex flex-wrap items-center gap-3">
-        <input id="p_q" type="search" class="input w-64" data-i18n-ph="search" placeholder="Хайлт...">
-        <select id="p_cat" class="input">
+      <!-- ЗАСВАРЛАГДСАН: Шүүлтүүрүүд responsive болсон -->
+      <div class="flex flex-col sm:flex-row flex-wrap items-start sm:items-center gap-3">
+        <input id="p_q" type="search" class="input w-full sm:w-64" data-i18n-ph="search" placeholder="Хайлт...">
+        <select id="p_cat" class="input w-full sm:w-auto">
           <option value="" data-i18n="all_categories">Бүх ангилал</option>
         </select>
-        <select id="p_status" class="input">
+        <select id="p_status" class="input w-full sm:w-auto">
           <option value="" data-i18n="all_status">Бүх төлөв</option>
           <option>Completed</option>
           <option>Ongoing</option>
           <option>Planned</option>
         </select>
-        <div class="toggle-wrap">
+        <div class="toggle-wrap w-full sm:w-auto">
           <button id="viewGrid" class="toggle active" data-i18n="view_grid">Grid</button>
           <button id="viewList" class="toggle" data-i18n="view_list">List</button>
         </div>
