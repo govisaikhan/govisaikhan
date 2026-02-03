@@ -46,7 +46,10 @@ html.dark{
 .kpi-n{font-weight:900;font-size:1.25rem}
 .kpi-t{font-size:.85rem;color:var(--muted)}
 .hero-card{position:relative;border-radius:1.25rem;overflow:hidden;box-shadow:0 10px 30px rgba(30,58,138,.2)}
-.hero-img{width:100%;height:380px;object-fit:cover;display:block}
+
+/* ЗАСВАРЛАГДСАН: Зурагнууд responsive болсон */
+.hero-img{width:100%;height:280px;object-fit:cover;display:block}
+@media(min-width:768px){.hero-img{height:380px}}
 .hero-badge{position:absolute;bottom:12px;left:12px;background:#111827;color:#fff;font-weight:800;padding:.4rem .6rem;border-radius:.75rem;font-size:.75rem}
 .fab{position:fixed;right:18px;bottom:18px;width:52px;height:52px;border-radius:9999px;background:var(--brand-600);color:#fff;display:grid;place-items:center;font-size:20px;box-shadow:0 10px 20px rgba(29,78,216,.35)}
 .fab:hover{transform:translateY(-2px)}
@@ -58,14 +61,16 @@ html.dark{
 .toggle-wrap{display:flex;background:var(--brand-50);padding:.3rem;border-radius:9999px}
 .toggle{padding:.45rem .8rem;border-radius:9999px;font-weight:800;color:#4b5563}
 .toggle.active{background:var(--brand-600);color:#fff}
-/* News/Project cards - ЗАСАГДСАН: зураг 400x360 */
+/* News/Project cards - ЗАСАГДСАН: зураг responsive болсон */
 .news-card{display:flex;flex-direction:column;background:var(--surface);border-radius:1rem;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.06)}
-.news-cover{width:100%;height:360px;object-fit:cover;max-width:400px;margin:0 auto}
+.news-cover{width:100%;height:240px;object-fit:cover;max-width:400px;margin:0 auto}
+@media(min-width:768px){.news-cover{height:360px}}
 .news-body{padding:1rem}
 .news-meta{font-size:.8rem;color:var(--muted)}
 .news-title{font-weight:900;font-size:1.05rem}
-/* List rows */
-.row{display:grid;grid-template-columns:80px 1.5fr 1fr 1fr 100px;gap:1rem;align-items:center;padding:1rem}
+/* List rows - ЗАСВАРЛАГДСАН: Жижиг дэлгэцэнд block, том дэлгэцэнд grid */
+.row{display:block;padding:1rem;border-bottom:1px solid #e5e7eb}
+@media(min-width:1024px){.row{display:grid;grid-template-columns:80px 1.5fr 1fr 1fr 100px;gap:1rem;align-items:center;border-bottom:none}}
 .row:hover{background:#f9fafb}
 .row img{width:80px;height:56px;object-fit:cover;border-radius:.5rem}
 /* Stars */
@@ -86,9 +91,10 @@ html.dark, .dark body{background:#0b1220;color:#e5e7eb}
 /* Executive Bio */
 .bio{display:grid;grid-template-columns:1fr;gap:1.5rem}
 @media(min-width:1024px){.bio{grid-template-columns:440px 1fr}}
+
+/* ЗАСВАРЛАГДСАН: Био видео responsive болсон */
 .bio-photo{width:100%;height:340px;object-fit:cover;border-radius:1rem;box-shadow:0 10px 20px rgba(0,0,0,.15)}
-/* ШИНЭ: Bio видео - 426x240px */
-.bio-video{width:426px;height:440px;border-radius:1rem;box-shadow:0 10px 20px rgba(0,0,0,.15);margin:0 auto}
+.bio-video{width:100%;max-width:426px;height:auto;aspect-ratio:426/440;border-radius:1rem;box-shadow:0 10px 20px rgba(0,0,0,.15);margin:0 auto}
 .badge{display:inline-flex;align-items:center;gap:.5rem;border:1px solid var(--brand-200);background:var(--brand-50);color:var(--brand-700);padding:.35rem .6rem;border-radius:.75rem;font-weight:800;font-size:.75rem}
 
 /* Hide horizontal scrollbar for nav overflow */
@@ -114,3 +120,50 @@ html.dark, .dark body{background:#0b1220;color:#e5e7eb}
 }
 .header-colored .icon-btn:hover { box-shadow: 0 0 0 3px rgba(255,255,255,.25); }
 .header-colored .no-scrollbar { scrollbar-color: transparent transparent; }
+
+/* ===== Mobile Responsive Fixes ===== */
+
+/* Гар утасны дэлгэцэд толгой хэсэг дэх Санал өгөх товчийг нуух */
+@media (max-width: 768px) {
+  .header-colored nav .btn-outline {
+    display: none;
+  }
+  
+  /* Гар утасны дэлгэцэд навбар item-уудыг илүү жижиг болгох */
+  .header-colored nav {
+    gap: 1rem;
+    padding: 0.5rem 0;
+  }
+  
+  .header-colored .nav {
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+}
+
+/* Гар утасны дэлгэцэд бусад хуудсан дээрх Санал өгөх товчийг хадгалах */
+@media (max-width: 768px) {
+  /* Зөвхөн .header-colored классгүй header-д байгаа товчийг хадгалах */
+  header:not(.header-colored) nav .btn-outline {
+    display: inline-flex;
+  }
+}
+
+/* Гар утасны дэлгэцэд хэвлэлүүдийг илүү сайн тохируулах */
+@media (max-width: 640px) {
+  .section-title {
+    font-size: 1.4rem;
+  }
+  
+  h1.text-4xl, h1.text-3xl {
+    font-size: 1.8rem;
+    line-height: 1.2;
+  }
+  
+  /* FAB товчийг бага зэрэг жижиг болгох */
+  .fab {
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+  }
+}
