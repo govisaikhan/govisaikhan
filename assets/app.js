@@ -1,14 +1,33 @@
 // ===== CONFIG =====
-const API_BASE = 'https://script.google.com/macros/s/AKfycbxGAbzrXcMM-f0dj0enI_5kQmamH95r5oTS9jbfhbj_zdD72ndEimkvPzXiJc9qAQbE/exec'; // e.g., https://script.google.com/macros/s/AKfycb.../exec
-                  
+// ӨӨРИЙН Google Apps Script Web App URL-ээр солино уу!
+// Жишээ: https://script.google.com/macros/s/ТАНЫ_APPS_SCRIPT_ID/exec
+// const API_BASE = 'https://script.google.com/macros/s/AKfycbxGAbzrXcMM-f0dj0enI_5kQmamH95r5oTS9jbfhbj_zdD72ndEimkvPzXiJc9qAQbE/exec';
+const API_BASE = 'https://script.google.com/macros/s/AKfycbzjtBfbwfHZ2-CJIrXK2-qDqMCCbb46cVNRNCeQEeQXAJqUrn2IJHIZZlJnqMoKUQk4/exec';
+
 // ===== Helpers =====
 const $ = (s, r=document) => r.querySelector(s);
 const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
 
 function toast(msgEl, text, ok=true){
   if(!msgEl) return;
-  msgEl.textContent = text;
-  msgEl.className = ok ? 'text-sm text-green-600' : 'text-sm text-red-600';
+  const lang = localStorage.getItem('lang') || 'mn';
+  const successMsg = lang === 'mn' ? 'Санал амжилттай илгээгдлээ.' : 'Feedback submitted successfully.';
+  const errorMsg = lang === 'mn' ? 'Алдаа гарлаа.' : 'Error occurred.';
+  const networkError = lang === 'mn' ? 'Сүлжээний алдаа.' : 'Network error.';
+  
+  if (ok) {
+    msgEl.textContent = text || successMsg;
+    msgEl.className = 'text-sm text-green-600';
+  } else {
+    msgEl.textContent = text || errorMsg;
+    msgEl.className = 'text-sm text-red-600';
+  }
+  
+  // Network алдааны тохиолдол
+  if (text === 'Сүлжээний алдаа.' || text === 'Network error.') {
+    msgEl.textContent = networkError;
+  }
+  
   setTimeout(() => { msgEl.textContent = ''; }, 5000);
 }
 
@@ -69,7 +88,8 @@ const I18N = {
     search:"Хайлт...", name_ph:"Нэр *", phone_ph:"Утас *", email_ph:"И-мэйл",
     detail_ph:"Дэлгэрэнгүй...", send:"Илгээх",
     name_opt_ph:"Нэр", phone_opt_ph:"Утас", email_opt_ph:"И-мэйл", fb_ph:"Таны санал...",
-    rating:"Үнэлгээ:"
+    rating:"Үнэлгээ:",
+    feedback_desc:"Та саналаа үлдээнэ үү. Бид таны саналыг анхааралтай хүлээн авч, шийдвэрлэх болно."
   },
   en: {
     title_home:"M.Govisaikhan",
@@ -99,7 +119,8 @@ const I18N = {
     search:"Search...", name_ph:"Name *", phone_ph:"Phone *", email_ph:"Email",
     detail_ph:"Details...", send:"Send",
     name_opt_ph:"Name", phone_opt_ph:"Phone", email_opt_ph:"Email", fb_ph:"Your feedback...",
-    rating:"Rating:"
+    rating:"Rating:",
+    feedback_desc:"Please leave your feedback. We will carefully review and address your suggestions."
   }
 };
 
@@ -311,28 +332,92 @@ async function loadFeatured(){
 
 // ===== Feedback =====
 function bindFeedback(){
-  const form = $('#feedbackForm'); if(!form) return;
-  const btn = $('#fbBtn'); const msg = $('#fbMsg');
-  const stars = $('#stars'); let rating=5;
+  const form = $('#feedbackForm'); 
+  if(!form) return;
+  
+  const btn = $('#fbBtn'); 
+  const msg = $('#fbMsg');
+  const stars = $('#stars'); 
+  let rating = 5;
+  
+  // Одны үнэлгээг эхлээд идэвхтэй болгох
+  if (stars) {
+    $$('[data-v]', stars).forEach(b => b.classList.add('active'));
+  }
+  
+  // Одны үнэлгээг сонгох
   stars?.addEventListener('click', (e) => {
     if(e.target.closest('.star')){
       rating = Number(e.target.dataset.v);
       $$('[data-v]', stars).forEach(b => b.classList.toggle('active', Number(b.dataset.v) <= rating));
-      form.querySelector('[name="rating"]').value = String(rating);
+      if (form.querySelector('[name="rating"]')) {
+        form.querySelector('[name="rating"]').value = String(rating);
+      }
     }
   });
-  $$('[data-v]', stars).forEach(b => b.classList.add('active'));
+  
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const fd = new FormData(form);
-    const payload = Object.fromEntries(fd.entries());
-    btn.disabled = true; btn.textContent = I18N[localStorage.getItem('lang')||'mn'].send + '...';
-    try{
-      const res = await postJSON(API_BASE, { action: 'submitFeedback', payload: { ...payload, page: location.pathname } });
-      if(res.ok){ form.reset(); $$('[data-v]', stars).forEach(b => b.classList.add('active')); toast(msg,'Санал амжилттай илгээгдлээ.'); }
-      else { toast(msg, res.message || 'Алдаа гарлаа.', false); }
-    }catch(err){ toast(msg,'Сүлжээний алдаа.', false); }
-    finally{ btn.disabled=false; btn.textContent=I18N[localStorage.getItem('lang')||'mn'].send; }
+    
+    // Хэлний тохиргоог авах
+    const lang = localStorage.getItem('lang') || 'mn';
+    const sendingText = I18N[lang]?.send || 'Илгээх';
+    
+    // Товчны текстийг өөрчлөх
+    btn.disabled = true; 
+    btn.textContent = sendingText + '...';
+    
+    try {
+      const fd = new FormData(form);
+      const payload = Object.fromEntries(fd.entries());
+      
+      // Хоосон талбаруудыг шалгах
+      if (!payload.name || !payload.phone) {
+        toast(msg, lang === 'mn' ? 'Нэр болон утасны дугаар оруулна уу.' : 'Please enter name and phone.', false);
+        btn.disabled = false;
+        btn.textContent = sendingText;
+        return;
+      }
+      
+      // API руу илгээх
+      const res = await postJSON(API_BASE, { 
+        action: 'submitFeedback', 
+        payload: { 
+          ...payload, 
+          page: location.pathname 
+        } 
+      });
+      
+      if(res.ok){
+        // Формыг цэвэрлэх
+        form.reset();
+        
+        // Одны үнэлгээг дахин 5 болгох
+        if (stars) {
+          rating = 5;
+          $$('[data-v]', stars).forEach(b => b.classList.toggle('active', Number(b.dataset.v) <= rating));
+          if (form.querySelector('[name="rating"]')) {
+            form.querySelector('[name="rating"]').value = '5';
+          }
+        }
+        
+        toast(msg, lang === 'mn' ? 'Санал амжилттай илгээгдлээ.' : 'Feedback submitted successfully.', true);
+      } else {
+        toast(msg, res.message || (lang === 'mn' ? 'Алдаа гарлаа.' : 'Error occurred.'), false);
+      }
+    } catch(err) {
+      console.error('Feedback error:', err);
+      
+      // API_BASE URL шалгах
+      if (!API_BASE || API_BASE.includes('AKfycbxGAbzrXcMM-f0dj0enI_5kQmamH95r5oTS9jbfhbj_zdD72ndEimkvPzXiJc9qAQbE')) {
+        toast(msg, lang === 'mn' ? 'API холболтын тохиргоог шалгана уу!' : 'Please check API configuration!', false);
+      } else {
+        toast(msg, lang === 'mn' ? 'Сүлжээний алдаа.' : 'Network error.', false);
+      }
+    } finally { 
+      btn.disabled = false; 
+      btn.textContent = sendingText; 
+    }
   });
 }
 
@@ -365,8 +450,6 @@ function initProjectViewToggle(){
     loadProjects();
   });
 }
-
-// ===== Page Init =====
 
 // ===== Facebook Reels (from Google Sheets) — robust with fallbacks =====
 function reelsSkeleton(n=3){
@@ -476,34 +559,6 @@ async function loadReelsFromSheet(){
 }
 
 
-document.addEventListener('DOMContentLoaded', () => {
-  initTheme();
-  initLang();
-  initTabs();
-  initProjectViewToggle();
-
-  // Wire inputs
-  $('#q')?.addEventListener('input', loadNews);
-  $('#cat')?.addEventListener('change', loadNews);
-  $('#p_q')?.addEventListener('input', loadProjects);
-  $('#p_cat')?.addEventListener('change', loadProjects);
-  $('#p_status')?.addEventListener('change', loadProjects);
-
-  // Load data
-  loadNews();
-  loadProjects();
-  loadFeatured();
-
-  loadReelsFromSheet();
-
-  // Forms
-  bindFeedback();
-  
-  // Homepage news
-  loadHomeNews();
-});
-
-
 // ===== Home Latest News =====
 async function loadHomeNews(){
   const el = $('#homeNewsGrid');
@@ -533,3 +588,34 @@ async function loadHomeNews(){
     el.innerHTML = '';
   }
 }
+
+// ===== Page Init =====
+document.addEventListener('DOMContentLoaded', () => {
+  initTheme();
+  initLang();
+  initTabs();
+  initProjectViewToggle();
+
+  // Wire inputs
+  $('#q')?.addEventListener('input', loadNews);
+  $('#cat')?.addEventListener('change', loadNews);
+  $('#p_q')?.addEventListener('input', loadProjects);
+  $('#p_cat')?.addEventListener('change', loadProjects);
+  $('#p_status')?.addEventListener('change', loadProjects);
+
+  // Load data
+  loadNews();
+  loadProjects();
+  loadFeatured();
+  loadReelsFromSheet();
+
+  // Forms
+  bindFeedback();
+  
+  // Homepage news
+  loadHomeNews();
+  
+  // Debug мэдээлэл
+  console.log('API Base URL:', API_BASE);
+  console.log('Current page:', window.location.pathname);
+});
