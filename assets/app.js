@@ -2,7 +2,8 @@
 // ӨӨРИЙН Google Apps Script Web App URL-ээр солино уу!
 // Жишээ: https://script.google.com/macros/s/ТАНЫ_APPS_SCRIPT_ID/exec
 // const API_BASE = 'https://script.google.com/macros/s/AKfycbxGAbzrXcMM-f0dj0enI_5kQmamH95r5oTS9jbfhbj_zdD72ndEimkvPzXiJc9qAQbE/exec';
-const API_BASE = 'https://script.google.com/macros/s/AKfycbzjtBfbwfHZ2-CJIrXK2-qDqMCCbb46cVNRNCeQEeQXAJqUrn2IJHIZZlJnqMoKUQk4/exec';
+// const API_BASE = 'https://script.google.com/macros/s/AKfycbzjtBfbwfHZ2-CJIrXK2-qDqMCCbb46cVNRNCeQEeQXAJqUrn2IJHIZZlJnqMoKUQk4/exec';
+const API_BASE = 'https://script.google.com/macros/s/AKfycbwNE56WMvvmaoZH1fAuGUVbqyx2CrqWqV-uuPO6tDB545kQTovnIlCWRx_rrLD2XhVG/exec';
 
 // ===== Helpers =====
 const $ = (s, r=document) => r.querySelector(s);
