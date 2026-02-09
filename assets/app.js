@@ -3,7 +3,12 @@
 // Жишээ: https://script.google.com/macros/s/ТАНЫ_APPS_SCRIPT_ID/exec
 // const API_BASE = 'https://script.google.com/macros/s/AKfycbxGAbzrXcMM-f0dj0enI_5kQmamH95r5oTS9jbfhbj_zdD72ndEimkvPzXiJc9qAQbE/exec';
 // const API_BASE = 'https://script.google.com/macros/s/AKfycbzjtBfbwfHZ2-CJIrXK2-qDqMCCbb46cVNRNCeQEeQXAJqUrn2IJHIZZlJnqMoKUQk4/exec';
-const API_BASE = 'https://script.google.com/macros/s/AKfycbwNE56WMvvmaoZH1fAuGUVbqyx2CrqWqV-uuPO6tDB545kQTovnIlCWRx_rrLD2XhVG/exec';
+// const API_BASE = 'https://script.google.com/macros/s/AKfycbxe_jyURzdDyQt9y6G7mJn0v0ea4Ix6sbO33eqNoP1qXBsnj-UkUCXzKi9-1GqfpzNA/exec';
+// const API_BASE = 'https://script.google.com/macros/s/AKfycbzjtBfbwfHZ2-CJIrXK2-qDqMCCbb46cVNRNCeQEeQXAJqUrn2IJHIZZlJnqMoKUQk4/exec';
+// const API_BASE = 'https://script.google.com/macros/s/AKfycbwNE56WMvvmaoZH1fAuGUVbqyx2CrqWqV-uuPO6tDB545kQTovnIlCWRx_rrLD2XhVG/exec';
+const API_BASE = 'https://script.google.com/macros/s/AKfycby3_ydBjGzG_Arw-QZXBiTCiL0YeAbL4_xBCaB14SbVptlUZ1q6BICSX7HigPPc84Jf/exec';
+
+
 
 // ===== Helpers =====
 const $ = (s, r=document) => r.querySelector(s);
@@ -32,20 +37,46 @@ function toast(msgEl, text, ok=true){
   setTimeout(() => { msgEl.textContent = ''; }, 5000);
 }
 
-async function getJSON(url){
+// --- 2. Сүлжээний функцүүд (Энд оруулна) ---
+async function getJSON(url) {
   const r = await fetch(url, { method: 'GET' });
-  if(!r.ok) throw new Error('HTTP '+r.status);
+  if (!r.ok) throw new Error('HTTP ' + r.status);
   return r.json();
 }
 
-async function postJSON(url, payload){
+async function postJSON(url, payload) {
   const r = await fetch(url, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    // 'application/json' биш 'text/plain' ашиглаж CORS-оос зайлсхийнэ
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' }, 
     body: JSON.stringify(payload)
   });
-  if(!r.ok) throw new Error('HTTP '+r.status);
+  if (!r.ok) throw new Error('HTTP ' + r.status);
   return r.json();
+}
+
+// --- 3. Санал хүсэлт илгээх функц (Жишээ) ---
+async function handleFeedbackSubmit(event) {
+  event.preventDefault();
+  
+  const payload = {
+    action: "submitFeedback",
+    payload: {
+      name: document.getElementById('name').value,
+      phone: document.getElementById('phone').value,
+      message: document.getElementById('message').value,
+      page: window.location.pathname
+    }
+  };
+
+  try {
+    const response = await postJSON(API_URL, payload);
+    if (response.ok) {
+      alert("Амжилттай илгээлээ!");
+    }
+  } catch (error) {
+    console.error("Алдаа гарлаа:", error);
+  }
 }
 
 // ===== Theme =====
