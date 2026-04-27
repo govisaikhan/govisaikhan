@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="mn" class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>СБД МАН — М.Говьсайхан</title>
+  <meta name="description" content="Сүхбаатар дүүрэг Монгол Ардын Нам — М.Говьсайхан"/>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/styles.css">
+  <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/128/3281/3281289.png">
+</head>
+<body class="bg-gray-50 text-gray-800" style="font-family: 'Manrope', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial;">
+
+  <!-- Navbar -->
+  <header class="sticky top-0 z-30 header-colored">
+    <div class="max-w-7xl mx-auto px-5 py-4 flex items-center justify-between">
+      <a href="./" class="font-extrabold text-white text-base tracking-tight">М.ГОВЬСАЙХАН</a>
+      <nav class="desktop-nav flex items-center gap-4">
+        <a class="nav text-sm" href="./">НҮҮР</a>
+        <a class="nav text-sm" href="./projects.html" data-i18n="nav_projects">ТӨСӨЛ</a>
+        <a class="nav text-sm" href="./news.html" data-i18n="nav_news">МЭДЭЭ</a>
+        <a class="nav text-sm font-bold" href="./sbd-man.html">СБД МАН</a>
+        <a class="nav text-sm" href="./nosk.html">НОСК ХК</a>
+        <a class="nav text-sm" href="./reels.html">ВИДЕО</a>
+        <a class="btn-outline text-sm" href="./news.html#tFb" data-i18n="nav_book">👍🏻САНАЛ ӨГӨХ</a>
+      </nav>
+      <div class="flex items-center gap-2">
+        <button id="langToggle" class="icon-btn" title="Language">MN</button>
+        <button id="themeToggle" class="icon-btn" aria-label="Toggle dark mode">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path></svg>
+        </button>
+        <button id="hamburger" class="icon-btn" aria-label="Цэс"></button>
+      </div>
+    </div>
+    <div id="mobileMenu">
+      <a class="mob-nav" href="./">НҮҮР</a>
+      <a class="mob-nav" href="./projects.html">ТӨСӨЛ</a>
+      <a class="mob-nav" href="./news.html">МЭДЭЭ</a>
+      <a class="mob-nav active" href="./sbd-man.html">СБД МАН</a>
+      <a class="mob-nav" href="./nosk.html">НОСК ХК</a>
+      <a class="mob-nav" href="./reels.html">ВИДЕО</a>
+      <a class="mob-cta" href="./news.html#tFb">👍🏻 САНАЛ ӨГӨХ</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="max-w-7xl mx-auto px-5 pt-10 pb-8 grid md:grid-cols-2 gap-10 items-center">
+    <div>
+      <div class="badge">Сүхбаатар дүүрэг</div>
+      <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mt-4 leading-tight">
+        <span class="grad">СБД МАН</span> — Монгол Ардын Нам
+      </h1>
+      <p class="text-gray-600 mt-4 max-w-2xl">
+        М.Говьсайхан Сүхбаатар дүүрэгт Монгол Ардын Намын хүрээнд иргэдийн амьдралын чанарыг дээшлүүлэх зорилгоор хэрэгжүүлж буй ажил, үйл ажиллагааны тухай.
+      </p>
+    </div>
+    <div>
+      <div class="hero-card">
+        <img class="hero-img" src="https://nosk.ub.gov.mn/web/image/9683-62a4fafd/Dargapic2.jpg?height=256" alt="М.Говьсайхан — СБД МАН"/>
+        <div class="hero-badge">М.Говьсайхан — СБД МАН</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="max-w-7xl mx-auto px-5 pb-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-md">
+      <div class="kpi">
+        <div class="kpi-n">СБД</div>
+        <div class="kpi-t">Сүхбаатар Дүүрэг</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-n">МАН</div>
+        <div class="kpi-t">Монгол Ардын Нам</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Мэдээ мэдээлэл -->
+  <section class="max-w-7xl mx-auto px-5 py-8">
+    <div class="flex items-center justify-between gap-4">
+      <h2 class="section-title">Мэдээ мэдээлэл</h2>
+      <a href="./news.html" class="text-sm font-semibold text-blue-700 hover:underline">Бүгдийг харах →</a>
+    </div>
+    <div id="sbdNewsGrid" class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    <div id="sbdNewsGrid_nav" class="items-center justify-center gap-4 mt-8" style="display:none">
+      <button id="sbdNewsGrid_prev" class="btn-soft px-5 py-2">← Өмнөх</button>
+      <span id="sbdNewsGrid_info" class="text-sm font-bold text-gray-500"></span>
+      <button id="sbdNewsGrid_next" class="btn-soft px-5 py-2">Дараах →</button>
+    </div>
+  </section>
+
+  <!-- Activities -->
+  <section class="max-w-7xl mx-auto px-5 py-8">
+    <h2 class="section-title">Үйл ажиллагаа</h2>
+    <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <div class="card">
+        <div class="text-3xl mb-3">🏘️</div>
+        <h3 class="text-lg font-bold">Орон сууцжуулах хөтөлбөр</h3>
+        <p class="text-gray-600 mt-2 text-sm">Сүхбаатар дүүргийн гэр хорооллыг орон сууцжуулах томоохон хөтөлбөрийг хэрэгжүүлж иргэдийг эрүүл, аюулгүй орчинд амьдрах нөхцөлөөр хангах.</p>
+      </div>
+
+      <div class="card">
+        <div class="text-3xl mb-3">🌿</div>
+        <h3 class="text-lg font-bold">Тохижилт, ногоон байгууламж</h3>
+        <p class="text-gray-600 mt-2 text-sm">Дүүргийн нийтийн талбай, цэцэрлэгт хүрээлэнгүүдийг тохижуулж, иргэдэд ая тухтай орчин бүрдүүлэх.</p>
+      </div>
+
+      <div class="card">
+        <div class="text-3xl mb-3">👥</div>
+        <h3 class="text-lg font-bold">Иргэдтэй уулзалт</h3>
+        <p class="text-gray-600 mt-2 text-sm">Тогтмол иргэдтэй уулзалт, хэлэлцүүлэг зохион байгуулж санал хүсэлтийг шийдвэрлэх тогтолцоог бэхжүүлжэх.</p>
+      </div>
+
+      <div class="card">
+        <div class="text-3xl mb-3">🎓</div>
+        <h3 class="text-lg font-bold">Боловсролын дэмжлэг</h3>
+        <p class="text-gray-600 mt-2 text-sm">Авьяаслаг залуусыг дэмжих хөтөлбөр, тэтгэлэг олгох ажлыг МАН-ын хүрээнд амжилттай хэрэгжүүлжэх.</p>
+      </div>
+
+      <div class="card">
+        <div class="text-3xl mb-3">🏗️</div>
+        <h3 class="text-lg font-bold">Дэд бүтэц хөгжүүлэлт</h3>
+        <p class="text-gray-600 mt-2 text-sm">Замын сүлжээ, ус, дулааны хангамжийг шинэчлэх, сайжруулах ажлуудыг дүүргийн хэмжээнд хэрэгжүүлсэн.</p>
+      </div>
+
+      <div class="card">
+        <div class="text-3xl mb-3">💼</div>
+        <h3 class="text-lg font-bold">Ажлын байр бий болгох</h3>
+        <p class="text-gray-600 mt-2 text-sm">Жижиг, дунд үйлдвэрлэлийг дэмжиж дүүргийн иргэдэд ажлын байрны нэмэлт боломж бүрдүүлсэн.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-100 mt-10">
+    <div class="max-w-7xl mx-auto px-5 py-8 text-sm text-gray-500 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div>© <span id="y"></span> М.ГОВЬСАЙХАН бүх эрх хуулиар хамгаалагдсан.</div>
+      <div class="flex items-center gap-4 flex-wrap">
+        <a class="nav" href="./">НҮҮР</a>
+        <a class="nav" href="./projects.html" data-i18n="nav_projects">ТӨСӨЛ</a>
+        <a class="nav" href="./news.html" data-i18n="nav_news">МЭДЭЭ</a>
+        <a class="nav" href="./sbd-man.html">СБД МАН</a>
+        <a class="nav" href="./nosk.html">НОСК ХК</a>
+        <a class="nav" href="./news.html#tFb" data-i18n="nav_book">👍🏻САНАЛ ӨГӨХ</a>
+        <a class="nav" href="./reels.html">ВИДЕО</a>
+      </div>
+    </div>
+  </footer>
+
+  <a href="./news.html#tFb" class="fab">👍🏻</a>
+
+  <script src="./assets/app.js"></script>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>

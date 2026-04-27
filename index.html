@@ -16,20 +16,31 @@
   <!-- Navbar -->
   <header class="sticky top-0 z-30 header-colored">
     <div class="max-w-7xl mx-auto px-5 py-4 flex items-center justify-between">
-      <a href="./" class="flex items-center gap-3">
-        <span class="sr-only">Гүйцэтгэх захирал</span>
-      </a>
-      <nav class="flex items-center gap-6 overflow-x-auto no-scrollbar">
-        <a class="nav" href="./projects.html" data-i18n="nav_projects">Төсөл</a>
-        <a class="nav" href="./news.html" data-i18n="nav_news">Мэдээ</a>
-        <a class="nav" href="./reels.html">Видео</a>
-        <a class="btn-outline mobile-hide" href="./news.html#tFb" data-i18n="nav_book">👍🏻Санал өгөх</a>
+      <a href="./" class="font-extrabold text-white text-base tracking-tight">М.ГОВЬСАЙХАН</a>
+      <nav class="desktop-nav flex items-center gap-4">
+        <a class="nav text-sm" href="./projects.html" data-i18n="nav_projects">ТӨСӨЛ</a>
+        <a class="nav text-sm" href="./news.html" data-i18n="nav_news">МЭДЭЭ</a>
+        <a class="nav text-sm" href="./sbd-man.html">СБД МАН</a>
+        <a class="nav text-sm" href="./nosk.html">НОСК ХК</a>
+        <a class="nav text-sm" href="./reels.html">ВИДЕО</a>
+        <a class="btn-outline text-sm" href="./news.html#tFb" data-i18n="nav_book">👍🏻САНАЛ ӨГӨХ</a>
       </nav>
       <div class="flex items-center gap-2">
         <button id="langToggle" class="icon-btn" title="Language">MN</button>
         <button id="themeToggle" class="icon-btn" aria-label="Toggle dark mode">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path></svg>
-        </button></div>
+        </button>
+        <button id="hamburger" class="icon-btn" aria-label="Цэс"></button>
+      </div>
+    </div>
+    <div id="mobileMenu">
+      <a class="mob-nav" href="./">НҮҮР</a>
+      <a class="mob-nav" href="./projects.html">ТӨСӨЛ</a>
+      <a class="mob-nav" href="./news.html">МЭДЭЭ</a>
+      <a class="mob-nav" href="./sbd-man.html">СБД МАН</a>
+      <a class="mob-nav" href="./nosk.html">НОСК ХК</a>
+      <a class="mob-nav" href="./reels.html">ВИДЕО</a>
+      <a class="mob-cta" href="./news.html#tFb">👍🏻 САНАЛ ӨГӨХ</a>
     </div>
   </header>
 
@@ -101,7 +112,7 @@
           <li>• <span data-i18n="bio_point4">Ашиглалтын шаардлага хангахгүй орон сууцнуудыг буулгаж, дахин төлөвлөн иргэдийг эрүүл аюулгүй орчинд амьдрах нөхцөлөөр хангажээ.</span></li>
           <li>• <span data-i18n="bio_point5">Эрчим хүчний хэмнэлттэй төслүүдийг дэмжиж Улаанбаатар хотод анх удаа дулааны төлбөр төлөхгүйгээр амьдарч болох загвар орон сууцыг ашиглалтад оруулжээ.</span></li>
           <li>• <span data-i18n="bio_point6">Улаанбаатар хотын шинэ суурьшлын бүсийг тэлэх ажлын хүрээнд Төр, хувийн хэвшлийн түншлэлтэй хамтран томоохон төслүүдийг эхлүүлэв.</span></li>
-          <li>• <span data-i18n="bio_point7">Улаанбаатар хотод орлогод нийцсэн ногоон орон сууцны төслийг хэрэгжүүлж 800 айлын орон сууцыг барьж эхэлсэн.</span></li>
+          <!-- <li>• <span data-i18n="bio_point7">Улаанбаатар хотод орлогод нийцсэн ногоон орон сууцны төслийг хэрэгжүүлж 800 айлын орон сууцыг барьж эхэлсэн.</span></li> -->
         </ul>
       </div>
     </div>
@@ -149,11 +160,13 @@
   <footer class="border-t border-gray-100 mt-10">
     <div class="max-w-7xl mx-auto px-5 py-8 text-sm text-gray-500 flex flex-col md:flex-row items-center justify-between gap-4">
       <div>© <span id="y"></span> М.ГОВЬСАЙХАН бүх эрх хуулиар хамгаалагдсан.</div>
-      <div class="flex items-center gap-4">
-        <a class="nav" href="./projects.html" data-i18n="nav_projects">Төсөл</a>
-        <a class="nav" href="./news.html" data-i18n="nav_news">Мэдээ</a>
-        <a class="nav" href="./news.html#tFb" data-i18n="nav_book">👍🏻Санал өгөх</a>
-        <a class="nav" href="./reels.html">Видео</a>
+      <div class="flex items-center gap-4 flex-wrap">
+        <a class="nav" href="./projects.html" data-i18n="nav_projects">ТӨСӨЛ</a>
+        <a class="nav" href="./news.html" data-i18n="nav_news">МЭДЭЭ</a>
+        <a class="nav" href="./sbd-man.html">СБД МАН</a>
+        <a class="nav" href="./nosk.html">НОСК ХК</a>
+        <a class="nav" href="./news.html#tFb" data-i18n="nav_book">👍🏻САНАЛ ӨГӨХ</a>
+        <a class="nav" href="./reels.html">ВИДЕО</a>
       </div>
     </div>
   </footer>

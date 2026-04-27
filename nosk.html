@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="mn" class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>НОСК ХК — Нийслэлийн Орон Сууцны Корпораци</title>
+  <meta name="description" content="Нийслэлийн Орон Сууцны Корпораци ХК — үйл ажиллагаа, төслүүд"/>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/styles.css">
+  <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/128/3281/3281289.png">
+</head>
+<body class="bg-gray-50 text-gray-800" style="font-family: 'Manrope', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial;">
+
+  <!-- Navbar -->
+  <header class="sticky top-0 z-30 header-colored">
+    <div class="max-w-7xl mx-auto px-5 py-4 flex items-center justify-between">
+      <a href="./" class="font-extrabold text-white text-base tracking-tight">М.ГОВЬСАЙХАН</a>
+      <nav class="desktop-nav flex items-center gap-4">
+        <a class="nav text-sm" href="./">НҮҮР</a>
+        <a class="nav text-sm" href="./projects.html" data-i18n="nav_projects">ТӨСӨЛ</a>
+        <a class="nav text-sm" href="./news.html" data-i18n="nav_news">МЭДЭЭ</a>
+        <a class="nav text-sm" href="./sbd-man.html">СБД МАН</a>
+        <a class="nav text-sm font-bold" href="./nosk.html">НОСК ХК</a>
+        <a class="nav text-sm" href="./reels.html">ВИДЕО</a>
+        <a class="btn-outline text-sm" href="./news.html#tFb" data-i18n="nav_book">👍🏻САНАЛ ӨГӨХ</a>
+      </nav>
+      <div class="flex items-center gap-2">
+        <button id="langToggle" class="icon-btn" title="Language">MN</button>
+        <button id="themeToggle" class="icon-btn" aria-label="Toggle dark mode">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path></svg>
+        </button>
+        <button id="hamburger" class="icon-btn" aria-label="Цэс"></button>
+      </div>
+    </div>
+    <div id="mobileMenu">
+      <a class="mob-nav" href="./">НҮҮР</a>
+      <a class="mob-nav" href="./projects.html">ТӨСӨЛ</a>
+      <a class="mob-nav" href="./news.html">МЭДЭЭ</a>
+      <a class="mob-nav" href="./sbd-man.html">СБД МАН</a>
+      <a class="mob-nav active" href="./nosk.html">НОСК ХК</a>
+      <a class="mob-nav" href="./reels.html">ВИДЕО</a>
+      <a class="mob-cta" href="./news.html#tFb">👍🏻 САНАЛ ӨГӨХ</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="max-w-7xl mx-auto px-5 pt-10 pb-8 grid md:grid-cols-2 gap-10 items-center">
+    <div>
+      <div class="badge">Улаанбаатар хот</div>
+      <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mt-4 leading-tight">
+        <span class="grad">НОСК ХК</span>
+      </h1>
+      <p class="text-xl font-semibold text-gray-700 mt-1">Нийслэлийн Орон Сууцны Корпораци</p>
+      <p class="text-gray-600 mt-4 max-w-xl">
+        Нийслэлийн Орон Сууцны Корпораци ХК нь Улаанбаатар хотын иргэдэд орон сууцны хүртээмжтэй, чанартай шийдлийг санал болгодог хувьцаат компани юм.
+      </p>
+      <div class="flex flex-wrap gap-3 mt-6">
+        <a class="btn-primary w-full sm:w-auto text-center" href="./projects.html">Төслүүдийг харах</a>
+        <a class="btn-soft w-full sm:w-auto text-center" href="./news.html#tFb">👍🏻Санал өгөх</a>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-10">
+        <div class="kpi">
+          <div class="kpi-n">2001</div>
+          <div class="kpi-t">Үүсгэн байгуулагдсан</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-n">22+</div>
+          <div class="kpi-t">Хэрэгжүүлж буй төсөл</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-n">2000+</div>
+          <div class="kpi-t">Айл орон сууцанд</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="hero-card">
+        <img class="hero-img" src="https://nosk.ub.gov.mn/web/image/9683-62a4fafd/Dargapic2.jpg?height=256" alt="НОСК ХК Захирал"/>
+        <div class="hero-badge">М.Говьсайхан — Гүйцэтгэх захирал</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Мэдээ мэдээлэл -->
+  <section class="max-w-7xl mx-auto px-5 py-8">
+    <div class="flex items-center justify-between gap-4">
+      <h2 class="section-title">Мэдээ мэдээлэл</h2>
+      <a href="./news.html" class="text-sm font-semibold text-blue-700 hover:underline">Бүгдийг харах →</a>
+    </div>
+    <div id="noskNewsGrid" class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    <div id="noskNewsGrid_nav" class="items-center justify-center gap-4 mt-8" style="display:none">
+      <button id="noskNewsGrid_prev" class="btn-soft px-5 py-2">← Өмнөх</button>
+      <span id="noskNewsGrid_info" class="text-sm font-bold text-gray-500"></span>
+      <button id="noskNewsGrid_next" class="btn-soft px-5 py-2">Дараах →</button>
+    </div>
+  </section>
+
+  <!-- Mission -->
+  <section class="max-w-7xl mx-auto px-5 py-8">
+    <h2 class="section-title">Эрхэм зорилго</h2>
+    <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="card text-center">
+        <div class="text-4xl mb-3">🏠</div>
+        <h3 class="text-lg font-bold">Орон сууцны хүртээмж</h3>
+        <p class="text-gray-600 mt-2 text-sm">Нийслэлийн иргэд бүрт хүртээмжтэй, орлогод нийцсэн орон сууцны шийдлийг санал болгох</p>
+      </div>
+      <div class="card text-center">
+        <div class="text-4xl mb-3">🌱</div>
+        <h3 class="text-lg font-bold">Тогтвортой хөгжил</h3>
+        <p class="text-gray-600 mt-2 text-sm">Эрчим хүчний хэмнэлттэй, экологи найрсаг орон сууцны барилгыг хөгжүүлэх</p>
+      </div>
+      <div class="card text-center">
+        <div class="text-4xl mb-3">🤝</div>
+        <h3 class="text-lg font-bold">Нийгмийн хариуцлага</h3>
+        <p class="text-gray-600 mt-2 text-sm">ТХХ-ийн хүрээнд хувийн хэвшилтэй хамтран орон сууцны зах зээлийг хөгжүүлэх</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key achievements -->
+  <section class="max-w-7xl mx-auto px-5 py-8">
+    <h2 class="section-title">Үндсэн амжилтууд</h2>
+    <div class="mt-6 card">
+      <ul class="space-y-4">
+        <li class="flex gap-3 items-start">
+          <span class="text-green-500 font-bold text-lg mt-0.5">✓</span>
+          <p>Нийслэлд анх удаа дотоод бонд гаргаж <strong>2,000 орчим иргэн</strong>ийг орон сууцанд оруулсан.</p>
+        </li>
+        <li class="flex gap-3 items-start">
+          <span class="text-green-500 font-bold text-lg mt-0.5">✓</span>
+          <p>Сэлбэ дэд төвийг түшиглэн гэр хорооллыг орон сууцжуулах хүрээнд <strong>12 мянган айл</strong>ын орон сууцны төслийг эхлүүлсэн.</p>
+        </li>
+        <li class="flex gap-3 items-start">
+          <span class="text-green-500 font-bold text-lg mt-0.5">✓</span>
+          <p>Улаанбаатарт анх удаа <strong>дулааны төлбөр төлөхгүйгээр</strong> амьдарч болох загвар орон сууцыг ашиглалтад оруулсан.</p>
+        </li>
+        <li class="flex gap-3 items-start">
+          <span class="text-green-500 font-bold text-lg mt-0.5">✓</span>
+          <p>Орлогод нийцсэн <strong>ногоон орон сууц</strong>ны төслийн хүрээнд 800 айлын орон сууцыг барьж эхэлсэн.</p>
+        </li>
+        <li class="flex gap-3 items-start">
+          <span class="text-green-500 font-bold text-lg mt-0.5">✓</span>
+          <p>Ашиглалтын шаардлага хангахгүй <strong>хуучин орон сууц</strong>нуудыг буулгаж, дахин төлөвлөн иргэдийг аюулгүй орчинд амьдруулсан.</p>
+        </li>
+        <li class="flex gap-3 items-start">
+          <span class="text-green-500 font-bold text-lg mt-0.5">✓</span>
+          <p>Улаанбаатарт <strong>түрээсийн орон сууц</strong>ны олон талт хэлбэрийг амжилттай хэрэгжүүлсэн.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Contact / Info -->
+  <section class="max-w-7xl mx-auto px-5 py-8">
+    <h2 class="section-title">Холбоо барих</h2>
+    <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="card space-y-3">
+        <h3 class="font-bold text-lg">Байршил &amp; Холбоо</h3>
+        <p class="text-gray-600 text-sm">🏢 Улаанбаатар хот, Нийслэлийн Орон Сууцны Корпораци ХК</p>
+        <p class="text-gray-600 text-sm">🌐 <a href="https://nosk.ub.gov.mn" target="_blank" rel="noopener" class="text-blue-600 hover:underline">nosk.ub.gov.mn</a></p>
+        <p class="text-gray-600 text-sm">📧 Мэдээлэл авахыг хүсвэл санал хүсэлт илгээнэ үү.</p>
+      </div>
+      <div class="card space-y-3">
+        <h3 class="font-bold text-lg">Санал, хүсэлт</h3>
+        <p class="text-gray-600 text-sm">Та НОСК ХК-тай холбоотой санал, хүсэлт, гомдлоо доорх холбоосоор илгээх боломжтой.</p>
+        <a class="btn-primary inline-block mt-2" href="./news.html#tFb">👍🏻 Санал өгөх</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-100 mt-10">
+    <div class="max-w-7xl mx-auto px-5 py-8 text-sm text-gray-500 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div>© <span id="y"></span> М.ГОВЬСАЙХАН бүх эрх хуулиар хамгаалагдсан.</div>
+      <div class="flex items-center gap-4 flex-wrap">
+        <a class="nav" href="./">НҮҮР</a>
+        <a class="nav" href="./projects.html" data-i18n="nav_projects">ТӨСӨЛ</a>
+        <a class="nav" href="./news.html" data-i18n="nav_news">МЭДЭЭ</a>
+        <a class="nav" href="./sbd-man.html">СБД МАН</a>
+        <a class="nav" href="./nosk.html">НОСК ХК</a>
+        <a class="nav" href="./news.html#tFb" data-i18n="nav_book">👍🏻САНАЛ ӨГӨХ</a>
+        <a class="nav" href="./reels.html">ВИДЕО</a>
+      </div>
+    </div>
+  </footer>
+
+  <a href="./news.html#tFb" class="fab">👍🏻</a>
+
+  <script src="./assets/app.js"></script>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>

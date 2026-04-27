@@ -13,21 +13,33 @@
   <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/128/3281/3281289.png">
 </head>
 <body class="bg-gray-50 text-gray-800" style="font-family: 'Manrope', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial;">
-  <header class="max-w-7xl mx-auto px-5 py-6 flex items-center justify-between">
-    <a href="./" class="flex items-center gap-3">
-      <img src="./logo.svg" class="h-9 w-auto" alt="Logo"/>
-      <span class="sr-only">Executive Portfolio</span>
-    </a>
-    <nav class="flex items-center gap-6 overflow-x-auto no-scrollbar">
-      <a class="nav" href="./" data-i18n="nav_home">Нүүр</a>
-      <a class="nav" href="./news.html" data-i18n="nav_news">Мэдээ</a>
-      <a class="btn-outline" href="./news.html#tFb" data-i18n="nav_book">👍🏻Санал өгөх</a>
-    </nav>
-    <div class="flex items-center gap-2">
-      <button id="langToggle" class="icon-btn">MN</button>
-      <button id="themeToggle" class="icon-btn" aria-label="Toggle dark mode">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path></svg>
-      </button>
+  <header class="sticky top-0 z-30 header-colored">
+    <div class="max-w-7xl mx-auto px-5 py-4 flex items-center justify-between">
+      <a href="./" class="font-extrabold text-white text-base tracking-tight">М.ГОВЬСАЙХАН</a>
+      <nav class="desktop-nav flex items-center gap-4">
+        <a class="nav text-sm" href="./" data-i18n="nav_home">НҮҮР</a>
+        <a class="nav text-sm" href="./news.html" data-i18n="nav_news">МЭДЭЭ</a>
+        <a class="nav text-sm" href="./sbd-man.html">СБД МАН</a>
+        <a class="nav text-sm" href="./nosk.html">НОСК ХК</a>
+        <a class="nav text-sm" href="./reels.html">ВИДЕО</a>
+        <a class="btn-outline text-sm" href="./news.html#tFb" data-i18n="nav_book">👍🏻САНАЛ ӨГӨХ</a>
+      </nav>
+      <div class="flex items-center gap-2">
+        <button id="langToggle" class="icon-btn">MN</button>
+        <button id="themeToggle" class="icon-btn" aria-label="Toggle dark mode">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path></svg>
+        </button>
+        <button id="hamburger" class="icon-btn" aria-label="Цэс"></button>
+      </div>
+    </div>
+    <div id="mobileMenu">
+      <a class="mob-nav" href="./">НҮҮР</a>
+      <a class="mob-nav active" href="./projects.html">ТӨСӨЛ</a>
+      <a class="mob-nav" href="./news.html">МЭДЭЭ</a>
+      <a class="mob-nav" href="./sbd-man.html">СБД МАН</a>
+      <a class="mob-nav" href="./nosk.html">НОСК ХК</a>
+      <a class="mob-nav" href="./reels.html">ВИДЕО</a>
+      <a class="mob-cta" href="./news.html#tFb">👍🏻 САНАЛ ӨГӨХ</a>
     </div>
   </header>
 
@@ -57,6 +69,11 @@
     </div>
 
     <div id="projectsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    <div id="projectsGrid_nav" class="items-center justify-center gap-4 mt-8" style="display:none">
+      <button id="projectsGrid_prev" class="btn-soft px-5 py-2">← Өмнөх</button>
+      <span id="projectsGrid_info" class="text-sm font-bold text-gray-500"></span>
+      <button id="projectsGrid_next" class="btn-soft px-5 py-2">Дараах →</button>
+    </div>
     <div id="projectsList" class="hidden divide-y divide-gray-100 bg-white rounded-2xl shadow"></div>
     <div id="p_empty" class="hidden text-gray-500" data-i18n="no_results">Илэрц олдсонгүй.</div>
   </main>
