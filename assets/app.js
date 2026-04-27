@@ -55,30 +55,6 @@ async function postJSON(url, payload) {
   return r.json();
 }
 
-// --- 3. Санал хүсэлт илгээх функц (Жишээ) ---
-async function handleFeedbackSubmit(event) {
-  event.preventDefault();
-  
-  const payload = {
-    action: "submitFeedback",
-    payload: {
-      name: document.getElementById('name').value,
-      phone: document.getElementById('phone').value,
-      message: document.getElementById('message').value,
-      page: window.location.pathname
-    }
-  };
-
-  try {
-    const response = await postJSON(API_URL, payload);
-    if (response.ok) {
-      alert("Амжилттай илгээлээ!");
-    }
-  } catch (error) {
-    console.error("Алдаа гарлаа:", error);
-  }
-}
-
 // ===== Theme =====
 function initTheme(){
   const html = document.documentElement;
@@ -96,7 +72,7 @@ const I18N = {
     title_home: "М.Говьсайхан",
     title_projects: "Төслийн сан ",
     title_news: "Мэдээ — Санал хүсэлт",
-    nav_home:"Нүүр", nav_projects:"Төсөл", nav_news:"Мэдээ", nav_book:"👍🏻Санал өгөх",
+    nav_home:"НҮҮР", nav_projects:"ТӨСӨЛ", nav_news:"МЭДЭЭ", nav_book:"👍🏻САНАЛ ӨГӨХ",
     badge_exec:"НОСК ХК",
     hero_title:"Нийслэлийн орон сууцны корпораци ХК гүйцэтгэх захирал <span class='grad'>М.Говьсайхан</span>",
     hero_desc:"Бид иргэдийн ая тухтай, таатай орчинд амьдрах нөхцөлийг бүрдүүлэхийн тулд олон төсөл хөтөлбөрийг амжилттай хэрэгжүүлж байна.",
@@ -225,6 +201,64 @@ function projectSkeletonList(n=6){
   `).join('');
 }
 
+// ===== News card template =====
+function newsCard(item) {
+  const img = item.image || 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1200&auto=format&fit=crop';
+  const link = item.link || '#';
+  const date = item.date || '';
+  return `
+  <article class="news-card">
+    <img class="news-cover" src="${img}" alt="cover">
+    <div class="news-body">
+      <div class="news-meta">${date} • ${item.category || 'Мэдээ'}</div>
+      <h3 class="news-title mt-1">${item.title || 'Гарчиг'}</h3>
+      <p class="text-gray-600 mt-2">${item.summary || ''}</p>
+      <a class="inline-block mt-3 text-blue-600 font-semibold" href="${link}" target="_blank" rel="noopener">Дэлгэрэнгүй →</a>
+    </div>
+  </article>`;
+}
+
+// ===== Pagination =====
+const GRID_DATA = {};
+const PER_PAGE = 9;
+
+function initPagination(gridId) {
+  document.getElementById(gridId + '_prev')?.addEventListener('click', () => {
+    const d = GRID_DATA[gridId];
+    if (d && d.page > 1) { d.page--; drawPage(gridId); }
+  });
+  document.getElementById(gridId + '_next')?.addEventListener('click', () => {
+    const d = GRID_DATA[gridId];
+    if (!d) return;
+    const total = Math.ceil(d.items.length / PER_PAGE);
+    if (d.page < total) { d.page++; drawPage(gridId); }
+  });
+}
+
+function setupGrid(gridId, items, renderFn) {
+  if (!GRID_DATA[gridId]) initPagination(gridId);
+  GRID_DATA[gridId] = { items, renderFn, page: 1 };
+  drawPage(gridId);
+}
+
+function drawPage(gridId) {
+  const d = GRID_DATA[gridId];
+  if (!d) return;
+  const total = Math.max(1, Math.ceil(d.items.length / PER_PAGE));
+  const p = d.page;
+  const slice = d.items.slice((p - 1) * PER_PAGE, p * PER_PAGE);
+  const grid = document.getElementById(gridId);
+  if (grid) grid.innerHTML = slice.map(d.renderFn).join('');
+  const nav = document.getElementById(gridId + '_nav');
+  if (nav) nav.style.display = total > 1 ? 'flex' : 'none';
+  const prevBtn = document.getElementById(gridId + '_prev');
+  const nextBtn = document.getElementById(gridId + '_next');
+  const info = document.getElementById(gridId + '_info');
+  if (prevBtn) prevBtn.disabled = p <= 1;
+  if (nextBtn) nextBtn.disabled = p >= total;
+  if (info) info.textContent = `${p} / ${total}`;
+}
+
 // ===== News =====
 async function loadNews(){
   const grid = $('#newsGrid');
@@ -252,21 +286,7 @@ async function loadNews(){
       return;
     }
     empty?.classList.add('hidden');
-    grid.innerHTML = items.map(item => {
-      const img = item.image || 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1200&auto=format&fit=crop';
-      const link = item.link || '#';
-      const date = item.date || '';
-      return `
-      <article class="news-card">
-        <img class="news-cover" src="${img}" alt="cover">
-        <div class="news-body">
-          <div class="news-meta">${date} • ${item.category || 'Мэдээ'}</div>
-          <h3 class="news-title mt-1">${item.title || 'Гарчиг'}</h3>
-          <p class="text-gray-600 mt-2">${item.summary || ''}</p>
-          <a class="inline-block mt-3 text-blue-600 font-semibold" href="${link}" target="_blank" rel="noopener">Дэлгэрэнгүй →</a>
-        </div>
-      </article>`;
-    }).join('');
+    setupGrid('newsGrid', items, newsCard);
   }catch(e){
     console.error(e);
     grid.innerHTML = '';
@@ -308,7 +328,7 @@ async function loadProjects(){
     }
     $('#p_empty')?.classList.add('hidden');
 
-    if(g) g.innerHTML = items.map(it => projectCard(it)).join('');
+    if(g) setupGrid('projectsGrid', items, projectCard);
     if(l) l.innerHTML = items.map(it => projectRow(it)).join('');
   }catch(e){
     console.error(e);
@@ -495,19 +515,52 @@ function reelsSkeleton(n=3){
   `).join('');
 }
 
+// Бүх reel видео нэг хэмжээтэй — гар утасд 320px, desktop-д max 480px
+const REEL_H = 'clamp(420px,65vw,600px)';
+
 function renderReel(url, title=''){
   try{
+    const safeTitle = title ? title.replace(/"/g,'&quot;') : '';
+    const wrap = `position:relative;height:${REEL_H};border-radius:1rem;overflow:hidden`;
+
+    // YouTube
+    const ytMatch = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([^&?\/\s]+)/);
+    if(ytMatch){
+      const src = `https://www.youtube.com/embed/${ytMatch[1]}?playsinline=1&rel=0`;
+      return `
+        <article class="news-card">
+          <div style="${wrap}">
+            <iframe src="${src}" style="position:absolute;inset:0;width:100%;height:100%;border:none"
+              allowfullscreen allow="autoplay; picture-in-picture; web-share"
+              title="${safeTitle || 'YouTube Video'}"></iframe>
+          </div>
+          ${title ? `<div class="news-body"><div class="news-title mt-2">${title}</div></div>` : ''}
+        </article>`;
+    }
+
+    // Шууд видео файл (.mp4, .webm, .ogg, .mov)
+    if(/\.(mp4|webm|ogg|mov)(\?|$)/i.test(url)){
+      return `
+        <article class="news-card">
+          <div style="${wrap}">
+            <video src="${url}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"
+              controls playsinline preload="metadata"
+              title="${safeTitle || 'Видео'}"></video>
+          </div>
+          ${title ? `<div class="news-body"><div class="news-title mt-2">${title}</div></div>` : ''}
+        </article>`;
+    }
+
+    // Facebook Reel / Video
     const enc = encodeURIComponent(url);
     const src = `https://www.facebook.com/plugins/video.php?href=${enc}&show_text=false&t=0`;
     return `
       <article class="news-card">
-        <div class="relative" style="padding-top:137.78%;border-radius:1rem;overflow:hidden">
-          <iframe
-            src="${src}"
-            style="position:absolute;inset:0;width:100%;height:100%;border:none;overflow:hidden"
+        <div style="${wrap}">
+          <iframe src="${src}" style="position:absolute;inset:0;width:100%;height:100%;border:none;overflow:hidden"
             scrolling="no" frameborder="0" allowfullscreen="true"
             allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-            title="${title ? title.replace(/"/g,'&quot;') : 'Facebook Reel'}"></iframe>
+            title="${safeTitle || 'Facebook Reel'}"></iframe>
         </div>
         ${title ? `<div class="news-body"><div class="news-title mt-2">${title}</div></div>` : ''}
       </article>`;
@@ -517,13 +570,18 @@ function renderReel(url, title=''){
 }
 
 function parseManualReels(){
-  // Optional manual fallback: <div id="reelsGrid" data-reels='["url1","url2"]'>
+  // HTML-д шууд оруулах:
+  // data-reels='["url1","url2"]'  — жагсаалт
+  // data-reels='[{"url":"...","title":"..."},...]'  — title-тэй
   const grid = document.getElementById('reelsGrid');
   if(!grid) return [];
   try{
     const raw = grid.getAttribute('data-reels') || '[]';
     const arr = JSON.parse(raw);
-    return Array.isArray(arr) ? arr.filter(Boolean).map(u => ({url:u, title:''})) : [];
+    if(!Array.isArray(arr)) return [];
+    return arr.filter(Boolean).map(item =>
+      typeof item === 'string' ? {url: item, title: ''} : {url: item.url || '', title: item.title || ''}
+    ).filter(x => x.url);
   }catch(e){ return []; }
 }
 
@@ -558,6 +616,22 @@ async function loadReelsFromSheet(){
   const grid  = document.getElementById('reelsGrid');
   const empty = document.getElementById('reelsEmpty');
   if(!grid) return;
+
+  // data-no-api="true" бол зөвхөн HTML-д оруулсан data-reels ашиглана (API дуудахгүй)
+  if(grid.getAttribute('data-no-api') === 'true'){
+    const items = parseManualReels();
+    const limitAttr = grid.getAttribute('data-limit');
+    const limit = limitAttr ? parseInt(limitAttr, 10) : 0;
+    const showing = (Number.isFinite(limit) && limit > 0) ? items.slice(0, limit) : items;
+    if(!showing.length){
+      grid.innerHTML = '';
+      if(empty) empty.classList.remove('hidden');
+    } else {
+      if(empty) empty.classList.add('hidden');
+      grid.innerHTML = showing.map(it => renderReel(it.url, it.title)).join('');
+    }
+    return;
+  }
 
   // skeleton
   grid.innerHTML = reelsSkeleton(3);
@@ -608,10 +682,10 @@ async function loadHomeNews(){
       <article class="news-card">
         <img class="news-cover" src="${img}" alt="cover">
         <div class="news-body">
-          <div class="news-meta">${date} • ${item.category || 'News'}</div>
-          <h3 class="news-title mt-1">${item.title || 'Untitled'}</h3>
+          <div class="news-meta">${date} • ${item.category || 'Мэдээ'}</div>
+          <h3 class="news-title mt-1">${item.title || 'Гарчиг'}</h3>
           <p class="text-gray-600 mt-2">${item.summary || ''}</p>
-          <a class="inline-block mt-3 text-blue-600 font-semibold" href="${link}" target="_blank" rel="noopener">Read more →</a>
+          <a class="inline-block mt-3 text-blue-600 font-semibold" href="${link}" target="_blank" rel="noopener">Дэлгэрэнгүй →</a>
         </div>
       </article>`;
     }).join('');
@@ -621,12 +695,62 @@ async function loadHomeNews(){
   }
 }
 
+// ===== Ангилалаар мэдээ татах (СБД МАН + НОСК ХК хоёр хуудас зэрэг) =====
+// categories: string эсвэл array — аль нэг ангилалтай мэдээ бүгд гарна
+async function loadCategoryNews(categories, gridId){
+  const el = document.getElementById(gridId);
+  if(!el) return;
+  const cats = Array.isArray(categories)
+    ? categories.map(c => c.trim().toLowerCase())
+    : [categories.trim().toLowerCase()];
+  el.innerHTML = newsSkeleton(3);
+  try{
+    const res = await getJSON(`${API_BASE}?action=listNews`);
+    const all = res?.data ?? [];
+    const items = all
+      .filter(x => {
+        const cat = (x.category || '').trim().toLowerCase();
+        return cats.some(tc => cat === tc || cat.includes(tc));
+      })
+    if(!items.length){
+      el.innerHTML = '';
+      return;
+    }
+    setupGrid(gridId, items, newsCard);
+  }catch(e){
+    console.error(e);
+    el.innerHTML = '';
+  }
+}
+
+// ===== Hamburger Menu =====
+const ICON_MENU  = `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>`;
+const ICON_CLOSE = `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
+
+function initHamburger(){
+  const btn  = document.getElementById('hamburger');
+  const menu = document.getElementById('mobileMenu');
+  if(!btn || !menu) return;
+  btn.innerHTML = ICON_MENU;
+  btn.addEventListener('click', () => {
+    const open = menu.classList.toggle('mob-open');
+    btn.innerHTML = open ? ICON_CLOSE : ICON_MENU;
+  });
+  menu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      menu.classList.remove('mob-open');
+      btn.innerHTML = ICON_MENU;
+    });
+  });
+}
+
 // ===== Page Init =====
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
   initLang();
   initTabs();
   initProjectViewToggle();
+  initHamburger();
 
   // Wire inputs
   $('#q')?.addEventListener('input', loadNews);
@@ -646,8 +770,9 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Homepage news
   loadHomeNews();
-  
-  // Debug мэдээлэл
-  console.log('API Base URL:', API_BASE);
-  console.log('Current page:', window.location.pathname);
+
+  // Ангилалаар мэдээ — аль хоёр ангилал ч гарна
+  if(document.getElementById('sbdNewsGrid'))  loadCategoryNews('СБД МАН', 'sbdNewsGrid');
+  if(document.getElementById('noskNewsGrid')) loadCategoryNews('НОСК ХК', 'noskNewsGrid');
+
 });
