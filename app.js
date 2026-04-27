@@ -55,30 +55,6 @@ async function postJSON(url, payload) {
   return r.json();
 }
 
-// --- 3. Санал хүсэлт илгээх функц (Жишээ) ---
-async function handleFeedbackSubmit(event) {
-  event.preventDefault();
-  
-  const payload = {
-    action: "submitFeedback",
-    payload: {
-      name: document.getElementById('name').value,
-      phone: document.getElementById('phone').value,
-      message: document.getElementById('message').value,
-      page: window.location.pathname
-    }
-  };
-
-  try {
-    const response = await postJSON(API_URL, payload);
-    if (response.ok) {
-      alert("Амжилттай илгээлээ!");
-    }
-  } catch (error) {
-    console.error("Алдаа гарлаа:", error);
-  }
-}
-
 // ===== Theme =====
 function initTheme(){
   const html = document.documentElement;
@@ -799,6 +775,4 @@ document.addEventListener('DOMContentLoaded', () => {
   if(document.getElementById('sbdNewsGrid'))  loadCategoryNews(['СБД МАН','НОСК ХК'], 'sbdNewsGrid');
   if(document.getElementById('noskNewsGrid')) loadCategoryNews(['СБД МАН','НОСК ХК'], 'noskNewsGrid');
 
-  console.log('API Base URL:', API_BASE);
-  console.log('Current page:', window.location.pathname);
 });
