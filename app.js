@@ -772,7 +772,7 @@ document.addEventListener('DOMContentLoaded', () => {
   loadHomeNews();
 
   // Ангилалаар мэдээ — аль хоёр ангилал ч гарна
-  if(document.getElementById('sbdNewsGrid'))  loadCategoryNews(['СБД МАН','НОСК ХК'], 'sbdNewsGrid');
-  if(document.getElementById('noskNewsGrid')) loadCategoryNews(['СБД МАН','НОСК ХК'], 'noskNewsGrid');
+  if(document.getElementById('sbdNewsGrid'))  loadCategoryNews('СБД МАН', 'sbdNewsGrid');
+  if(document.getElementById('noskNewsGrid')) loadCategoryNews('НОСК ХК', 'noskNewsGrid');
 
 });
