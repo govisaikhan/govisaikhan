@@ -105,7 +105,7 @@ const I18N = {
     title_news:"News — Feedback — Executive",
     nav_home:"Home", nav_projects:"Projects", nav_news:"News", nav_book:"👍🏻Vote",
     badge_exec:"NOSK LLC",
-    hero_title:"<span class='grad'>M.Govisaikhan</span> CEO Capital Housing Corporation LLC",
+    hero_title:"<span class='grad'>M.Govisaikhan</span> Head of the Capital Investment Department",
     hero_desc:"We are successfully implementing many projects and programs to create conditions for citizens to live in a comfortable and pleasant environment.",
     cta_meeting:"👍🏻 Give Feedback", cta_projects:"Browse projects",
     kpi_exp_n:"22+ yrs", kpi_exp_t:"Experience", kpi_done_n:"22+ projects", kpi_done_t:"Delivered", kpi_cs_n:"92%", kpi_cs_t:"Wall material OST land clearance",
