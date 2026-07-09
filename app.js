@@ -106,7 +106,7 @@ const I18N = {
     nav_home:"Home", nav_projects:"Projects", nav_news:"News", nav_book:"👍🏻Vote",
     badge_exec:"NOSK LLC",
     hero_title:"<span class='grad'>M.Govisaikhan</span> Head of the Capital Investment Department",
-    hero_desc:"We are successfully implementing many projects and programs to create conditions for citizens to live in a comfortable and pleasant environment.",
+    hero_desc:"We will establish a development project that operates in an environmentally friendly manner.",
     cta_meeting:"👍🏻 Give Feedback", cta_projects:"Browse projects",
     kpi_exp_n:"22+ yrs", kpi_exp_t:"Experience", kpi_done_n:"22+ projects", kpi_done_t:"Delivered", kpi_cs_n:"92%", kpi_cs_t:"Wall material OST land clearance",
     bio_title:"Projects implemented in the community", bio_name:"M.Govisakhan", bio_role:"Ceo",
